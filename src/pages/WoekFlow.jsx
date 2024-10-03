@@ -4,14 +4,24 @@ import NoteForm from "../components/NoteForm";
 import Note from "../components/Node";
 
 const WorkflowContainer = ({ selectedWorkflowId }) => {
-  const [nodes, setNodes] = useState([]);
+const [nodes, setNodes] = useState([]); 
   const [selectedNoteId, setSelectedNoteId] = useState(null);
   const [noteData, setNoteData] = useState({});
-
+  const [workflowId, setWorkflowId] = useState(null); 
+  console.log("Selected Workflow ID:", selectedWorkflowId); 
   useEffect(() => {
-    // Optionally, you can fetch existing nodes related to the workflow here
-    // fetchNodes(selectedWorkflowId);
-  }, [selectedWorkflowId]);
+    if (selectedWorkflowId == null) {
+        const storedWorkflowId = localStorage.getItem("selectedWorkflowId");
+        console.log("fund id", storedWorkflowId)
+        if (storedWorkflowId) {
+          setWorkflowId(storedWorkflowId);
+        } else {
+          console.error("No workflow ID found in localStorage or props.");
+        }
+      } else {
+        setWorkflowId(selectedWorkflowId);
+      }
+    }, []);
 
   const addNote = (parentNodeId = null) => {
     const parentNode = nodes.find((node) => node.id === parentNodeId);
@@ -82,7 +92,7 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
         system_prompt: "",
         organization: 'Claude',
         model_name: 'claude-3-haiku-20240307',
-        workflow_id: `${selectedWorkflowId}`,
+        workflow_id: `${workflowId}`,
         position: `${id}`,
         status: 'ready',
       }),

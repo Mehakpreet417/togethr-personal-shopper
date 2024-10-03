@@ -197,63 +197,20 @@
 // src/App.jsx
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import WorkflowContainer from "./pages/WoekFlow"; // Ensure this import is correct
+import WorkflowPage from "./pages/WoekFlow"; 
+import Home from "./pages/Home";
 import "./styles/App.css";
 
 const App = () => {
   const [workflows, setWorkflows] = useState([]);
   const [selectedWorkflowId, setSelectedWorkflowId] = useState(null);
 
-  const handleCreateWorkflow = async () => {
-    const newWorkflow = {
-      workflow_name: `Workflow ${workflows.length + 1}`,
-      team_id: "fe627eb7-64c9-4691-9a04-02ddefb5bc8a",
-      workflow_information: {},
-      status: "ready",
-    };
-
-    try {
-      const response = await fetch("https://qa.govoyr.com/api/workflow", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newWorkflow),
-      });
-
-      const data = await response.json();
-
-      // Add the new workflow to the state
-      setWorkflows((prevWorkflows) => [...prevWorkflows, data]);
-
-      // Navigate to the new workflow page
-      setSelectedWorkflowId(data.workflow_id);
-      window.location.href = `/${data.workflow_id}`; // Navigate to the new workflow URL
-      console.log("work id", data.workflow_id);
-    } catch (error) {
-      console.error("Error creating workflow:", error);
-    }
-  };
-
   return (
     <Router>
       <div className="app-container">
-      {/* {workflows.length <= 0 &&  <button
-          className="create-workflow-btn"
-          onClick={handleCreateWorkflow}
-        >
-          Create New Workflow
-        </button>}  */}
-
         <Routes>
-          <Route path="/" element={<button
-          className="create-workflow-btn"
-          onClick={handleCreateWorkflow}
-        >
-          Create New Workflow
-        </button>} />
-          <Route path={`/${selectedWorkflowId}`} element={<WorkflowContainer selectedWorkflowId={selectedWorkflowId} />} />
-          {/* You can add more routes here if needed */}
+          <Route path="/" element={<Home workflows={workflows} setWorkflows={setWorkflows} setSelectedWorkflowId={setSelectedWorkflowId} />} />
+          <Route path="/:workflowId" element={<WorkflowPage selectedWorkflowId={selectedWorkflowId} />} />
         </Routes>
       </div>
     </Router>
@@ -261,4 +218,5 @@ const App = () => {
 };
 
 export default App;
+
 
