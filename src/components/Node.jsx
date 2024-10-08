@@ -132,6 +132,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useContentContext } from "../../ContentContest"; 
 import "../styles/node.css"
 
 const Note = ({
@@ -144,7 +145,12 @@ const Note = ({
   onAddNote,
   onDrag,
   onCreateNote,
+  onNodeClick,
 }) => {
+  const {
+    nodeId,
+    activeNodeId,
+  } = useContentContext(); 
   const [isDragging, setIsDragging] = useState(false);
   const noteRef = useRef(null);
   const offset = useRef({ x: 0, y: 0 });
@@ -178,6 +184,8 @@ const Note = ({
   const handleMouseUp = () => {
     setIsDragging(false);
   };
+
+  
 
   useEffect(() => {
     if (isDragging) {
@@ -214,28 +222,37 @@ const Note = ({
             <DeleteIcon />
           </button>
       </header>
-      <div className="p-[10px] relative flex flex-col gap-[0]">
+      <div className="p-[10px] relative flex flex-col gap-[0]"   onClick={() => {
+    onNodeClick(id);
+  }}>
       <div className="text-[12px] text-gray-300">
         <p>
-          <strong>What:</strong> {content?.what || ""}
+          {/* <strong>What:</strong> {content?.what || ""} */}
+          <strong>What:</strong> {"LLM"}
+        </p>
+        <p>
+          <strong>Organization:</strong> {content?.organization || ""}
+        </p>
+        <p>
+          <strong>Model:</strong> {content?.model || ""}
         </p>
         <p>
           <strong>How:</strong> {content?.how || ""}
         </p>
-        <p>
+        {/* <p>
           <strong>Using:</strong> {content?.using || ""}
         </p>
         <p>
           <strong>Name:</strong> {content?.name || ""}
-        </p>
-        <p>
-          <strong>To:</strong> {content?.to || ""}
-        </p>
+        </p> */}
+        {/* <p>
+          <strong>To:</strong> {nodeId}
+        </p> */}
       </div>
       <div className="flex justify-end items-center">
         <button
           type="button"
-          onClick={() => onCreateNote(id)}
+          onClick={() => onCreateNote(id, content)}
           className="absolute right-0 bottom-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Save

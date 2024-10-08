@@ -1,8 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useContentContext } from "../../ContentContest";
 
-const Home = ({ workflows, setWorkflows, setSelectedWorkflowId }) => {
+const Home = () => {
   const navigate = useNavigate(); // useNavigate hook for programmatic navigation
+
+  const { workflows, setWorkflows, setSelectedWorkflowId } = useContentContext();
 
   const handleCreateWorkflow = async () => {
     const newWorkflow = {
@@ -27,14 +30,14 @@ const Home = ({ workflows, setWorkflows, setSelectedWorkflowId }) => {
       setWorkflows((prevWorkflows) => [...prevWorkflows, data]);
 
       // Set the new workflow as the selected workflow
-      setSelectedWorkflowId(data.workflow_id);
-      localStorage.setItem('selectedWorkflowId', data.workflow_id);
-
-      console.log("work id", data.workflow_id);
+      setSelectedWorkflowId(data.workflow_id.id);
+      localStorage.setItem('selectedWorkflowId', data.workflow_id.id);
+      console.log("work id data", data.workflow_id);
+      console.log("work id", data.workflow_id.id);
 
       // Use navigate to go to the newly created workflow page
       if (data.workflow_id) {
-        navigate(`/${data.workflow_id}`); // Navigate to the new workflow's route
+        navigate(`/${data.workflow_id.id}`); // Navigate to the new workflow's route
       }
 
     } catch (error) {

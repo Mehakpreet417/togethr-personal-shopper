@@ -193,29 +193,49 @@
 // export default App;
 
 
-// App.js
-// src/App.jsx
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import WorkflowPage from "./pages/WoekFlow"; 
+import WorkflowPage from "./pages/WorkFlow"; 
 import Home from "./pages/Home";
 import "./styles/App.css";
+import { ContentProvider } from '../ContentContest'; 
+import { useContentContext } from "../ContentContest";
 
 const App = () => {
-  const [workflows, setWorkflows] = useState([]);
-  const [selectedWorkflowId, setSelectedWorkflowId] = useState(null);
+  const {
+    workflows, 
+    setWorkflows,
+    selectedWorkflowId, 
+    setSelectedWorkflowId
+  } = useContentContext(); 
 
   return (
-    <Router>
-      <div className="app-container">
-        <Routes>
-          <Route path="/" element={<Home workflows={workflows} setWorkflows={setWorkflows} setSelectedWorkflowId={setSelectedWorkflowId} />} />
-          <Route path="/:workflowId" element={<WorkflowPage selectedWorkflowId={selectedWorkflowId} />} />
-        </Routes>
-      </div>
-    </Router>
+      <Router>
+        <div className="app-container">
+          <Routes>
+            {/* Home route */}
+            <Route 
+              path="/" 
+              element={
+                <Home 
+                  workflows={workflows} 
+                  setWorkflows={setWorkflows} 
+                  setSelectedWorkflowId={setSelectedWorkflowId} 
+                />
+              } 
+            />
+
+            {/* Workflow page route */}
+            <Route 
+              path="/:workflowId" 
+              element={<WorkflowPage selectedWorkflowId={selectedWorkflowId} />} 
+            />
+          </Routes>
+        </div>
+      </Router>
   );
 };
 
 export default App;
+
 
