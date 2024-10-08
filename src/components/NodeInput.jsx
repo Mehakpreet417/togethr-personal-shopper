@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const NodeInput = ({ id }) => {
+const NodeInput = ({ id, onClose }) => {
   const [userInterest, setUserInterest] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -57,9 +57,16 @@ const NodeInput = ({ id }) => {
   };
 
   return (
-    <div className="min-w-[400px] p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-[20px]">
+    <div className="min-w-[400px] p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-[20px] relative"> {/* Added relative positioning */}
+      <button
+        onClick={onClose} // Call onClose function when clicked
+        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+        aria-label="Close"
+      >
+        &times; {/* Cross character */}
+      </button>
+
       <h3 className="text-lg font-bold tracking-tight text-gray-900 dark:text-white">Process Input</h3>
-      
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-[20px]">
         <div>

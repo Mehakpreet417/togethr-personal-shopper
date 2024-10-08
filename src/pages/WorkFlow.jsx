@@ -97,6 +97,10 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
     setSelectedNoteId(id);
   }
 
+  const handleOnClose = () => {
+    setActiveNodeId(null);
+  };
+
   const handleCreateNode = async (id, content) => {
     const nodeToSave = nodes.find(node => node.id === id);
     if (!nodeToSave) return;
@@ -183,7 +187,7 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
                 onDrag={handleNodeDrag} 
                 onNodeClick={handleNodeClick}
               />
-              {activeNodeId === node.id && <NodeInput id={activeNodeId} />} 
+              {activeNodeId === node.id && <NodeInput id={activeNodeId} onClose={handleOnClose}/>} 
 
               {parentNode && (
                 <div
