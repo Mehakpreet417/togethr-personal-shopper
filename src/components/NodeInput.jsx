@@ -124,10 +124,10 @@ const NodeInput = ({ id, onClose }) => {
               {/* Render individual properties of the object */}
               {apiResult.product_type && (
                 <>
-                  <p><strong>Product Type: </strong>{apiResult.product_type.type}</p>
-                  <p><strong>Type: </strong> {apiResult.product_type.type}</p>
-                  <p><strong>Description: </strong> {apiResult.product_type.description}</p>
-                  <p><strong>Value: </strong> {apiResult.product_type.value}</p>
+                  <p><strong>Product Type - </strong></p>
+                  <p>{'   '}<strong>Type: </strong> {apiResult.product_type.type}</p>
+                  <p>{'   '}<strong>Description: </strong> {apiResult.product_type.description}</p>
+                  <p>{'   '}<strong>Value: </strong> {apiResult.product_type.value}</p>
                 </>
               )}
             </div>
