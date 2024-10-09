@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 const NodeInput = ({ id, onClose }) => {
   const [userInterest, setUserInterest] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [apiResult, setApiResult] = useState(null); 
+  const [isJsonFormat, setIsJsonFormat] = useState(true); 
 
   const handleInputChange = (e) => {
     setUserInterest(e.target.value);
@@ -46,14 +48,17 @@ const NodeInput = ({ id, onClose }) => {
       }
 
       const result = await response.json();
-      console.log('Process result:', result);
       alert('Input processed successfully!');
+      setApiResult(result.response);
     } catch (error) {
-      console.error('Error processing input:', error);
       alert(`There was an error processing your input: ${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleToggleFormat = () => {
+    setIsJsonFormat(!isJsonFormat);  // Toggle between formats
   };
 
   return (
@@ -88,6 +93,47 @@ const NodeInput = ({ id, onClose }) => {
           {isSubmitting ? 'Processing...' : 'Submit'}
         </button>
       </form>
+{/* 
+      {apiResult && (
+        <div className="mt-4 p-4 bg-gray-100 rounded-lg dark:bg-gray-700">
+          <h4 className="text-md font-semibold text-gray-900 dark:text-white">API Response:</h4>
+          <pre className="text-sm text-gray-800 dark:text-gray-200">
+            {JSON.stringify(apiResult, null, 2)}
+          </pre>
+        </div>
+      )} */}
+
+{apiResult && (
+        <div className="mt-4 p-4 bg-gray-100 rounded-lg dark:bg-gray-700 relative">
+          <button
+            onClick={handleToggleFormat}
+            className="absolute top-2 right-2 text-gray-300 hover:text-gray-500"
+            aria-label="Toggle Format"
+          >
+            {isJsonFormat ? 'Detailed View' : 'JSON View'}
+          </button>
+
+          <h4 className="text-md font-semibold text-gray-900 dark:text-gray-300">API Response:</h4>
+
+          {isJsonFormat ? (
+            <pre className="text-sm mt-[15px] text-gray-800 dark:text-gray-300 max-w-[350px] overflow-x-auto overflow-y-hidden">
+              {JSON.stringify(apiResult, null, 2)}
+            </pre>
+          ) : (
+            <div className="text-sm mt-[15px] flex flex-col gap-[5px] text-gray-900 dark:text-gray-300 max-w-[350px] overflow-x-auto overflow-y-hidden">
+              {/* Render individual properties of the object */}
+              {apiResult.product_type && (
+                <>
+                  <p><strong>Product Type: </strong>{apiResult.product_type.type}</p>
+                  <p><strong>Type: </strong> {apiResult.product_type.type}</p>
+                  <p><strong>Description: </strong> {apiResult.product_type.description}</p>
+                  <p><strong>Value: </strong> {apiResult.product_type.value}</p>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

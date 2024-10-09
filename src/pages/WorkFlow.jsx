@@ -147,6 +147,7 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
 
       const data = await response.json();
       localStorage.setItem('node_id', data.created_node.id);
+      console.log("node data", data.reated_node);
       console.log("Node ID:", data.created_node.id);
       setNodeId(data.created_node.id);
 
