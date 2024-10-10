@@ -62,7 +62,7 @@ const NodeInput = ({ id, onClose }) => {
   };
 
   return (
-    <div className="min-w-[400px] p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-[20px] relative"> {/* Added relative positioning */}
+    <div className="min-w-[400px] z-50 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-[20px] relative"> {/* Added relative positioning */}
       <button
         onClick={onClose} // Call onClose function when clicked
         className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
