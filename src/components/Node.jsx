@@ -154,7 +154,7 @@ const Note = ({
   const [isDragging, setIsDragging] = useState(false);
   const noteRef = useRef(null);
   const offset = useRef({ x: 0, y: 0 });
-
+console.log("content in node", content)
   const [localPosition, setLocalPosition] = useState(position);
   useEffect(() => {
     setLocalPosition(position);
