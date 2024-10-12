@@ -5,7 +5,7 @@ const NodeInput = ({ id, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiResult, setApiResult] = useState(null); 
   const [isJsonFormat, setIsJsonFormat] = useState(true); 
-
+console.log("id in input ", id);
   const handleInputChange = (e) => {
     setUserInterest(e.target.value);
   };
@@ -22,14 +22,15 @@ const NodeInput = ({ id, onClose }) => {
 
     // Define the postData using the id from props directly
     const postData = {
-      node_object_id: "b6a2d577-1d0f-4cbe-b9bc-9f50913317d2",  // Use the id from props directly
-      input_data: {
-        search_queries: {
-          type: "list<str>",
-          description: "user's search queries",
-          value: Array.isArray(userInterest) ? userInterest.map(String) : [String(userInterest)],  // Ensure it's an array of strings
-        },
-      },
+      node_object_id: id,  // Use the id from props directly
+      // input_data: {
+      //   search_queries: {
+      //     type: "list<str>",
+      //     description: "user's search queries",
+      //     value: Array.isArray(userInterest) ? userInterest.map(String) : [String(userInterest)],  // Ensure it's an array of strings
+      //   },
+      // },
+      input_data:String(userInterest)
     };
 
     try {
@@ -105,13 +106,13 @@ const NodeInput = ({ id, onClose }) => {
 
 {apiResult && (
         <div className="mt-4 p-4 bg-gray-100 rounded-lg dark:bg-gray-700 relative">
-          <button
+          {/* <button
             onClick={handleToggleFormat}
             className="absolute top-2 right-2 text-gray-300 hover:text-gray-500"
             aria-label="Toggle Format"
           >
             {isJsonFormat ? 'Detailed View' : 'JSON View'}
-          </button>
+          </button> */}
 
           <h4 className="text-md font-semibold text-gray-900 dark:text-gray-300">API Response:</h4>
 

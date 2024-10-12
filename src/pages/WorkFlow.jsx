@@ -262,7 +262,7 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
                 onDrag={handleNodeDrag} 
                 onNodeClick={handleNodeClick}
               />
-              {activeNodeId === node.id && <NodeInput id={activeNodeId} onClose={handleOnClose}/>} 
+              {activeNodeId === node.id && <NodeInput id={nodeId} onClose={handleOnClose}/>} 
 
               {parentNode && (
                 <div
