@@ -1,3 +1,5 @@
+
+
 // import React, { useState, useEffect } from 'react';
 // import { useContentContext } from '../../ContentContest';
 
@@ -10,27 +12,24 @@
 //     using: '',
 //     name: '',
 //     to: '',
-//     where: ''
+//     where: '',
+//     input_format_dict: { search_queries: { type: '', description: '', value: '' } },
+//     output_format_dict: { product_type: { type: '', description: '', value: '' } }
 //   });
-//   const { organizations, setOrganizations, models, setModels, nodeId } = useContentContext();
-//   const [selectedModels, setSelectedModels] = useState([]); // Models for the selected organization
+//   console.log("initial form data", formData)
+//   const { organizations, setOrganizations, models, setModels } = useContentContext();
+//   const [selectedModels, setSelectedModels] = useState([]);
 
 //   async function fetchOrganizationsAndModels() {
 //     try {
 //       const orgResponse = await fetch("https://qa.govoyr.com/api/organizations");
 //       const orgData = await orgResponse.json();
-
 //       const organizations = orgData.organization;
 //       setOrganizations(organizations);
 
 //       const modelResponse = await fetch("https://qa.govoyr.com/api/models");
 //       const modelData = await modelResponse.json();
-
 //       setModels(modelData);
-
-//       console.log("Organizations:", organizations);
-//       console.log("Models Data:", modelData);
-
 //     } catch (error) {
 //       console.error("Error fetching data:", error);
 //     }
@@ -50,6 +49,8 @@
 //       name: '',
 //       to: '',
 //       where:'',
+//       input_format_dict: { search_queries: { type: '', description: '', value: '' } },
+//       output_format_dict: { product_type: { type: '', description: '', value: '' } }
 //     });
 //   }, [initialData]);
 
@@ -65,8 +66,22 @@
 //     }
 //   };
 
+//   const handleNestedChange = (e, field, subField, dictName) => {
+//     const { value } = e.target;
+//     setFormData({
+//       ...formData,
+//       [dictName]: {
+//         ...formData[dictName],
+//         [field]: {
+//           ...formData[dictName][field],
+//           [subField]: value,
+//         },
+//       },
+//     });
+//   };
+
 //   const handleSave = () => {
-//     onSave(formData); 
+//     onSave(formData);
 //   };
 
 //   return (
@@ -80,16 +95,15 @@
 //         value={formData.what}
 //         onChange={handleChange}
 //         placeholder="LLM"
-//         className="w-full mb-4 p-2 bg-gray-800 text-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//         className="w-full mb-4 p-2 bg-gray-800 text-white rounded-lg border border-gray-300"
 //       />
 
-//       {/* Organization Select */}
 //       <label className="block mb-2">Organization</label>
 //       <select
 //         name="organization"
 //         value={formData.organization}
 //         onChange={handleChange}
-//         className="w-full mb-4 p-2 bg-gray-800 text-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//         className="w-full mb-4 p-2 bg-gray-800 text-white rounded-lg border border-gray-300"
 //       >
 //         <option value="">Select Organization</option>
 //         {organizations.map((org) => (
@@ -97,14 +111,13 @@
 //         ))}
 //       </select>
 
-//       {/* Model Select */}
 //       <label className="block mb-2">Model</label>
 //       <select
 //         name="model"
 //         value={formData.model}
 //         onChange={handleChange}
-//         className="w-full mb-4 p-2 bg-gray-800 text-white  rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-//         disabled={!selectedModels.length}  // Disable if no models available
+//         className="w-full mb-4 p-2 bg-gray-800 text-white rounded-lg border border-gray-300"
+//         disabled={!selectedModels.length}
 //       >
 //         <option value="">Select Model</option>
 //         {selectedModels.map((model) => (
@@ -113,62 +126,97 @@
 //       </select>
 
 //       <label className="block mb-2">How</label>
-//       <div>
-//         <textarea
-//           id="chat"
-//           rows="3"
-//           name="how"
-//           value={formData.how}
-//           onChange={handleChange}
-//           className=" mb-4 block p-2 w-full text-sm text-text-white bg-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-//           placeholder="Prompt"
-//         ></textarea>
-//       </div>
-
-//       {/* <label className="block mb-2">Using</label>
-//       <input
-//         type="text"
-//         name="using"
-//         value={formData.using}
+//       <textarea
+//         id="chat"
+//         rows="3"
+//         name="how"
+//         value={formData.how}
 //         onChange={handleChange}
-//         placeholder="Product"
-//         className="w-full mb-4 p-2 bg-gray-800 text-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-//       />
+//         className="mb-4 block p-2 w-full bg-gray-800 rounded-lg border border-gray-300"
+//         placeholder="Prompt"
+//       ></textarea>
+//       <h3 className="text-lg font-bold mb-2">Input Format Dict</h3>
+//       {formData.input_format_dict && Object.keys(formData.input_format_dict).length > 0 ? (
+//         Object.keys(formData.input_format_dict).map((key) => (
+//           <div key={key} className="mb-4">
+//             <label className="block my-2 mx-auto">Key</label>
+//             <input
+//               type="text"
+//               value={formData.input_format_dict.key|| ''}
+//               onChange={(e) => handleNestedChange(e, key, 'input_format_dict')}
+//               className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
+              
+//             />
+//             <label className="block mb-2">Type</label>
+//             <input
+//               type="text"
+//               value={formData.input_format_dict[key]?.type || ''}
+//               onChange={(e) => handleNestedChange(e, key, 'type', 'input_format_dict')}
+//               className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
+//               placeholder="Enter Type, e.g., 'list of str'"
+//             />
+//             <label className="block mb-2">Description</label>
+//             <input
+//               type="text"
+//               value={formData.input_format_dict[key]?.description || ''}
+//               onChange={(e) => handleNestedChange(e, key, 'description', 'input_format_dict')}
+//               className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
+//               placeholder="Enter Description, e.g., 'list of all search queries generated by llm'"
+//             />
+//             <label className="block mb-2">Value</label>
+//             <input
+//               type="text"
+//               value={formData.input_format_dict[key]?.value || ''}
+//               onChange={(e) => handleNestedChange(e, key, 'value', 'input_format_dict')}
+//               className="w-full p-2 bg-gray-800 rounded-lg border border-gray-300"
+//               placeholder="Enter Value, e.g., '['q1','q2','q3']'"
+//             />
+//           </div>
+//         ))
+//       ) : (
+//         <p>No input format data available.</p>
+//       )}
 
-//       <input
-//         type="text"
-//         name="name"
-//         value={formData.name}
-//         onChange={handleChange}
-//         placeholder="string"
-//         className="w-full mb-4 p-2 bg-gray-800 text-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-//       /> */}
+//       <h3 className="text-lg font-bold mb-2">Output Format Dict</h3>
+//       {formData.output_format_dict && Object.keys(formData.output_format_dict).length > 0 ? (
+//         Object.keys(formData.output_format_dict).map((key) => (
+//           <div key={key} className="mb-4">
+//             <label className="block my-2 mx-auto">{key}</label>
+//             <label className="block mb-2">Type</label>
+//             <input
+//               type="text"
+//               value={formData.output_format_dict[key]?.type || ''}
+//               onChange={(e) => handleNestedChange(e, key, 'type', 'output_format_dict')}
+//               className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
+//               placeholder="e.g., 'str'"
+//             />
+//             <label className="block mb-2">Description</label>
+//             <input
+//               type="text"
+//               value={formData.output_format_dict[key]?.description || ''}
+//               onChange={(e) => handleNestedChange(e, key, 'description', 'output_format_dict')}
+//               className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
+//               placeholder="e.g., 'product type inferred from the search query'"
+//             />
+//             <label className="block mb-2">Value</label>
+//             <input
+//               type="text"
+//               value={formData.output_format_dict[key]?.value || ''}
+//               onChange={(e) => handleNestedChange(e, key, 'value', 'output_format_dict')}
+//               className="w-full p-2 bg-gray-800 rounded-lg border border-gray-300"
+//               placeholder="e.g., 'product_type'"
+//             />
+//           </div>
+//         ))
+//       ) : (
+//         <p>No output format data available.</p>
+//       )}
 
-//       <label className="block mb-2">To</label>
-//       <input
-//         type="text"
-//         name="to"
-//         value={formData.to}
-//         onChange={handleChange}
-//         placeholder="Curation"
-//         className="w-full mb-4 p-2 bg-gray-800 text-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-//       />
-
-// <label className="block mb-2">Where</label>
-//       <input
-//         type="text"
-//         name="to"
-//         value={formData.where}
-//         onChange={handleChange}
-//         placeholder="Curation"
-//         className="w-full mb-4 p-2 bg-gray-800 text-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-//       />
-
-// <div className="flex justify-end items-center">
+//       <div className="flex justify-end">
 //         <button
 //           type="button"
 //           onClick={handleSave}
-//           className=" text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+//           className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-full text-sm px-5 py-2.5"
 //         >
 //           Save
 //         </button>
@@ -177,10 +225,7 @@
 //   );
 // };
 
-
 // export default NoteForm;
-
-
 import React, { useState, useEffect } from 'react';
 import { useContentContext } from '../../ContentContest';
 
@@ -194,12 +239,14 @@ const NoteForm = ({ id, initialData, onSave }) => {
     name: '',
     to: '',
     where: '',
-    input_format_dict: { search_queries: { type: '', description: '', value: '' } },
-    output_format_dict: { product_type: { type: '', description: '', value: '' } }
+    input_format_dict: { customKey: { type: '', description: '', value: '' } },
+    output_format_dict: { customKey: { type: '', description: '', value: '' } }
   });
-  console.log("initial form data", formData)
+
   const { organizations, setOrganizations, models, setModels } = useContentContext();
   const [selectedModels, setSelectedModels] = useState([]);
+  const [inputKey, setInputKey] = useState(''); // For input format custom key
+  const [outputKey, setOutputKey] = useState(''); // For output format custom key
 
   async function fetchOrganizationsAndModels() {
     try {
@@ -230,8 +277,8 @@ const NoteForm = ({ id, initialData, onSave }) => {
       name: '',
       to: '',
       where:'',
-      input_format_dict: { search_queries: { type: '', description: '', value: '' } },
-      output_format_dict: { product_type: { type: '', description: '', value: '' } }
+      input_format_dict: { customKey: { type: '', description: '', value: '' } },
+      output_format_dict: { customKey: { type: '', description: '', value: '' } }
     });
   }, [initialData]);
 
@@ -261,6 +308,32 @@ const NoteForm = ({ id, initialData, onSave }) => {
     });
   };
 
+  const handleAddInputKey = () => {
+    if (inputKey) {
+      setFormData({
+        ...formData,
+        input_format_dict: {
+          ...formData.input_format_dict,
+          [inputKey]: { type: '', description: '', value: '' }
+        }
+      });
+      setInputKey(''); // Clear input key field after adding
+    }
+  };
+
+  const handleAddOutputKey = () => {
+    if (outputKey) {
+      setFormData({
+        ...formData,
+        output_format_dict: {
+          ...formData.output_format_dict,
+          [outputKey]: { type: '', description: '', value: '' }
+        }
+      });
+      setOutputKey(''); // Clear output key field after adding
+    }
+  };
+
   const handleSave = () => {
     onSave(formData);
   };
@@ -278,7 +351,6 @@ const NoteForm = ({ id, initialData, onSave }) => {
         placeholder="LLM"
         className="w-full mb-4 p-2 bg-gray-800 text-white rounded-lg border border-gray-300"
       />
-
       <label className="block mb-2">Organization</label>
       <select
         name="organization"
@@ -315,76 +387,103 @@ const NoteForm = ({ id, initialData, onSave }) => {
         onChange={handleChange}
         className="mb-4 block p-2 w-full bg-gray-800 rounded-lg border border-gray-300"
         placeholder="Prompt"
-      ></textarea>
-      <h3 className="text-lg font-bold mb-2">Input Format Dict</h3>
-      {formData.input_format_dict && Object.keys(formData.input_format_dict).length > 0 ? (
-        Object.keys(formData.input_format_dict).map((key) => (
-          <div key={key} className="mb-4">
-            <label className="block my-2 mx-auto">{key}</label>
-            <label className="block mb-2">Type</label>
-            <input
-              type="text"
-              value={formData.input_format_dict[key]?.type || ''}
-              onChange={(e) => handleNestedChange(e, key, 'type', 'input_format_dict')}
-              className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
-              placeholder="Enter Type, e.g., 'list of str'"
-            />
-            <label className="block mb-2">Description</label>
-            <input
-              type="text"
-              value={formData.input_format_dict[key]?.description || ''}
-              onChange={(e) => handleNestedChange(e, key, 'description', 'input_format_dict')}
-              className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
-              placeholder="Enter Description, e.g., 'list of all search queries generated by llm'"
-            />
-            <label className="block mb-2">Value</label>
-            <input
-              type="text"
-              value={formData.input_format_dict[key]?.value || ''}
-              onChange={(e) => handleNestedChange(e, key, 'value', 'input_format_dict')}
-              className="w-full p-2 bg-gray-800 rounded-lg border border-gray-300"
-              placeholder="Enter Value, e.g., '['q1','q2','q3']'"
-            />
-          </div>
-        ))
-      ) : (
-        <p>No input format data available.</p>
-      )}
+      ></textarea> 
 
+      {/* Input for adding custom keys to input_format_dict */}
+      <h3 className="text-lg font-bold mb-2">Input Format Dict</h3>
+      <label className="block mb-2">Add Key to Input Format</label>
+      <input
+        type="text"
+        value={inputKey}
+        onChange={(e) => setInputKey(e.target.value)}
+        className="w-full mb-4 p-2 bg-gray-800 rounded-lg border border-gray-300"
+        placeholder="Enter Key (e.g., 'search_queries')"
+      />
+      <button
+        type="button"
+        onClick={handleAddInputKey}
+        className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-full text-sm px-5 py-2.5 mb-4"
+      >
+        Add Input Key
+      </button>
+
+      {Object.keys(formData.input_format_dict).map((key) => (
+        <div key={key} className="mb-4">
+          <label className="block mb-2">Key: {key}</label>
+          <label className="block mb-2">Type</label>
+          <input
+            type="text"
+            value={formData.input_format_dict[key]?.type || ''}
+            onChange={(e) => handleNestedChange(e, key, 'type', 'input_format_dict')}
+            className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
+            placeholder="Enter Type"
+          />
+          <label className="block mb-2">Description</label>
+          <input
+            type="text"
+            value={formData.input_format_dict[key]?.description || ''}
+            onChange={(e) => handleNestedChange(e, key, 'description', 'input_format_dict')}
+            className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
+            placeholder="Enter Description"
+          />
+          <label className="block mb-2">Value</label>
+          <input
+            type="text"
+            value={formData.input_format_dict[key]?.value || ''}
+            onChange={(e) => handleNestedChange(e, key, 'value', 'input_format_dict')}
+            className="w-full p-2 bg-gray-800 rounded-lg border border-gray-300"
+            placeholder="Enter Value"
+          />
+        </div>
+      ))}
+
+      {/* Output Format Dict */}
       <h3 className="text-lg font-bold mb-2">Output Format Dict</h3>
-      {formData.output_format_dict && Object.keys(formData.output_format_dict).length > 0 ? (
-        Object.keys(formData.output_format_dict).map((key) => (
-          <div key={key} className="mb-4">
-            <label className="block my-2 mx-auto">{key}</label>
-            <label className="block mb-2">Type</label>
-            <input
-              type="text"
-              value={formData.output_format_dict[key]?.type || ''}
-              onChange={(e) => handleNestedChange(e, key, 'type', 'output_format_dict')}
-              className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
-              placeholder="e.g., 'str'"
-            />
-            <label className="block mb-2">Description</label>
-            <input
-              type="text"
-              value={formData.output_format_dict[key]?.description || ''}
-              onChange={(e) => handleNestedChange(e, key, 'description', 'output_format_dict')}
-              className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
-              placeholder="e.g., 'product type inferred from the search query'"
-            />
-            <label className="block mb-2">Value</label>
-            <input
-              type="text"
-              value={formData.output_format_dict[key]?.value || ''}
-              onChange={(e) => handleNestedChange(e, key, 'value', 'output_format_dict')}
-              className="w-full p-2 bg-gray-800 rounded-lg border border-gray-300"
-              placeholder="e.g., 'product_type'"
-            />
-          </div>
-        ))
-      ) : (
-        <p>No output format data available.</p>
-      )}
+      <label className="block mb-2">Add Key to Output Format</label>
+      <input
+        type="text"
+        value={outputKey}
+        onChange={(e) => setOutputKey(e.target.value)}
+        className="w-full mb-4 p-2 bg-gray-800 rounded-lg border border-gray-300"
+        placeholder="Enter Key (e.g., 'product_type')"
+      />
+      <button
+        type="button"
+        onClick={handleAddOutputKey}
+        className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-full text-sm px-5 py-2.5 mb-4"
+      >
+        Add Output Key
+      </button>
+
+      {Object.keys(formData.output_format_dict).map((key) => (
+        <div key={key} className="mb-4">
+          <label className="block mb-2">Key: {key}</label>
+          <label className="block mb-2">Type</label>
+          <input
+            type="text"
+            value={formData.output_format_dict[key]?.type || ''}
+            onChange={(e) => handleNestedChange(e, key, 'type', 'output_format_dict')}
+            className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
+            placeholder="Enter Type"
+          />
+          <label className="block mb-2">Description</label>
+          <input
+            type="text"
+            value={formData.output_format_dict[key]?.description || ''}
+            onChange={(e) => handleNestedChange(e, key, 'description', 'output_format_dict')}
+            className="w-full mb-2 p-2 bg-gray-800 rounded-lg border border-gray-300"
+            placeholder="Enter Description"
+          />
+          <label className="block mb-2">Value</label>
+          <input
+            type="text"
+            value={formData.output_format_dict[key]?.value || ''}
+            onChange={(e) => handleNestedChange(e, key, 'value', 'output_format_dict')}
+            className="w-full p-2 bg-gray-800 rounded-lg border border-gray-300"
+            placeholder="Enter Value"
+          />
+        </div>
+      ))}
 
       <div className="flex justify-end">
         <button

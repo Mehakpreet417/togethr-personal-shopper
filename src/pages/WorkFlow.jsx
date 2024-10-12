@@ -63,12 +63,14 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
       [newNode.id]: {
         what: '',
         how: '',
+        organization: '',
+        model: '',
         using: '',
         name: '',
         to: '',
         where: '',
-        input_format_dict: { search_queries: { type: '', description: '', value: '' } },
-        output_format_dict: { product_type: { type: '', description: '', value: '' } }
+        input_format_dict: {},
+        output_format_dict: {}
       },
     }));
   };
@@ -104,16 +106,91 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
     setActiveNodeId(null);
   };
 
+  // const handleCreateNode = async (id, content) => {
+  //   if (!content) {
+  //     console.error("Content is undefined or null");
+  //     return;
+  //   }
+
+  //   console.log("content type create node", content?.input_format_dict?.search_queries?.type)
+  //   const nodeToSave = nodes.find(node => node.id === id);
+  //   if (!nodeToSave) return;
+
+  //   try {
+  //     const response = await fetch('https://qa.govoyr.com/api/node', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         node_name: "product_type_inferring_llm",
+  //         system_prompt: content?.how,
+  //         organization: content?.organization, 
+  //         model_name: content?.model , 
+  //         workflow_id: `${workflowId}`,
+  //         position: "1",
+  //         status: 'ready',
+  //         format_organization: 'Claude',
+  //         format_model: 'claude-3-haiku-20240307',
+  //         input_format_dict: {
+  //           search_queries: {
+  //             type: content?.input_format_dict?.search_queries?.type || "", 
+  //             description: content?.input_format_dict?.search_queries?.description || "",
+  //             value: content?.input_format_dict?.search_queries?.value || "",
+  //           }
+  //         },
+  //         output_format_dict: {
+  //           product_type: {
+  //             type: content?.output_format_dict?.product_type?.type || "",
+  //             description: content?.output_format_dict?.product_type?.description || "",
+  //             value: content?.output_format_dict?.product_type?.value || "",
+  //         }
+  //         },
+  //         next_node_object_id: "20bb5f0c-abf1-452d-bad2-6502e0fede2a"
+  //       }),
+  //     });
+
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       console.error('API error response:', errorData);
+  //       throw new Error(errorData.message || 'Failed to create node');
+  //     }
+
+  //     const data = await response.json();
+  //     localStorage.setItem('node_id', data.created_node.id);
+  //     console.log("node data", data.reated_node);
+  //     console.log("Node ID:", data.created_node.id);
+  //     setNodeId(data.created_node.id);
+
+  //   } catch (error) {
+  //     console.error("Error creating node:", error.message);
+  //   }
+  // };
+
   const handleCreateNode = async (id, content) => {
     if (!content) {
       console.error("Content is undefined or null");
       return;
     }
-
-    console.log("content type create node", content?.input_format_dict?.search_queries?.type)
+  
     const nodeToSave = nodes.find(node => node.id === id);
     if (!nodeToSave) return;
-
+  
+    // Function to dynamically create input/output format dictionaries
+    const createFormatDict = (formatDict) => {
+      const result = {};
+      for (const key in formatDict) {
+        if (formatDict.hasOwnProperty(key)) {
+          result[key] = {
+            type: formatDict[key]?.type || "",
+            description: formatDict[key]?.description || "",
+            value: formatDict[key]?.value || "",
+          };
+        }
+      }
+      return result;
+    };
+  
     try {
       const response = await fetch('https://qa.govoyr.com/api/node', {
         method: 'POST',
@@ -130,41 +207,29 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
           status: 'ready',
           format_organization: 'Claude',
           format_model: 'claude-3-haiku-20240307',
-          input_format_dict: {
-            search_queries: {
-              type: content?.input_format_dict?.search_queries?.type || "", 
-              description: content?.input_format_dict?.search_queries?.description || "",
-              value: content?.input_format_dict?.search_queries?.value || "",
-            }
-          },
-          output_format_dict: {
-            product_type: {
-              type: content?.output_format_dict?.product_type?.type || "",
-              description: content?.output_format_dict?.product_type?.description || "",
-              value: content?.output_format_dict?.product_type?.value || "",
-          }
-          },
+          input_format_dict: createFormatDict(content?.input_format_dict || {}),
+          output_format_dict: createFormatDict(content?.output_format_dict || {}),
           next_node_object_id: "20bb5f0c-abf1-452d-bad2-6502e0fede2a"
         }),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         console.error('API error response:', errorData);
         throw new Error(errorData.message || 'Failed to create node');
       }
-
+  
       const data = await response.json();
       localStorage.setItem('node_id', data.created_node.id);
-      console.log("node data", data.reated_node);
+      console.log("Node data", data.created_node);
       console.log("Node ID:", data.created_node.id);
       setNodeId(data.created_node.id);
-
+  
     } catch (error) {
       console.error("Error creating node:", error.message);
     }
   };
-
+  
   return (
     <div className="workflow-container">
       <button className="create-node-btn" onClick={() => addNote(null)}>
