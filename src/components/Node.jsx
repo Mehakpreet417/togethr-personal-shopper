@@ -270,8 +270,9 @@ console.log("content in node", content)
           cursor: "pointer",
           fontSize: "20px",
           background: "none",
+          fontWeight: "bolder",
           border: "none",
-          color: "white",
+          color: "#1A202C",
         }}
       >
         +

@@ -271,7 +271,7 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
                     position: "absolute",
                     width: `${node.position.x - parentNode.position.x - 240}px`,
                     height: "2px",
-                    backgroundColor: "white",
+                    backgroundColor: "#1A202C",
                     left: `${parentNode.position.x + 250}px`,
                     top: `${parentNode.position.y + 135}px`,
                   }}

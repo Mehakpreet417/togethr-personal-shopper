@@ -392,20 +392,31 @@ const NoteForm = ({ id, initialData, onSave }) => {
       {/* Input for adding custom keys to input_format_dict */}
       <h3 className="text-lg font-bold mb-2">Input Format Dict</h3>
       <label className="block mb-2">Add Key to Input Format</label>
-      <input
-        type="text"
-        value={inputKey}
-        onChange={(e) => setInputKey(e.target.value)}
-        className="w-full mb-4 p-2 bg-gray-800 rounded-lg border border-gray-300"
-        placeholder="Enter Key (e.g., 'search_queries')"
-      />
-      <button
-        type="button"
-        onClick={handleAddInputKey}
-        className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-full text-sm px-5 py-2.5 mb-4"
-      >
-        Add Input Key
-      </button>
+      <div className="relative w-full mb-4">
+  <input
+    type="text"
+    value={inputKey}
+    onChange={(e) => setInputKey(e.target.value)}
+    className="w-full p-2 bg-gray-800 rounded-lg border border-gray-300 pr-10" // Add padding-right to make space for the icon
+    placeholder="Enter Key (e.g., 'search_queries')"
+  />
+  <button
+    type="button"
+    onClick={handleAddInputKey}
+    className="absolute inset-y-0 right-0 pr-3 flex items-center text-green-500 hover:text-green-700"
+  >
+    {/* Tick Icon (SVG) */}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      className="w-5 h-5"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+    </svg>
+  </button>
+</div>
 
       {Object.keys(formData.input_format_dict).map((key) => (
         <div key={key} className="mb-4">
@@ -440,20 +451,31 @@ const NoteForm = ({ id, initialData, onSave }) => {
       {/* Output Format Dict */}
       <h3 className="text-lg font-bold mb-2">Output Format Dict</h3>
       <label className="block mb-2">Add Key to Output Format</label>
-      <input
-        type="text"
-        value={outputKey}
-        onChange={(e) => setOutputKey(e.target.value)}
-        className="w-full mb-4 p-2 bg-gray-800 rounded-lg border border-gray-300"
-        placeholder="Enter Key (e.g., 'product_type')"
-      />
-      <button
-        type="button"
-        onClick={handleAddOutputKey}
-        className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-full text-sm px-5 py-2.5 mb-4"
-      >
-        Add Output Key
-      </button>
+      <div className="relative w-full mb-4">
+  <input
+    type="text"
+    value={outputKey}
+    onChange={(e) => setOutputKey(e.target.value)}
+    className="w-full p-2 bg-gray-800 rounded-lg border border-gray-300 pr-10" // Add padding-right to make space for the icon
+    placeholder="Enter Key (e.g., 'product_type')"
+  />
+  <button
+    type="button"
+    onClick={handleAddOutputKey}
+    className="absolute inset-y-0 right-0 pr-3 flex items-center text-green-500 hover:text-green-700"
+  >
+    {/* Tick Icon (SVG) */}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      className="w-5 h-5"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+    </svg>
+  </button>
+</div>
 
       {Object.keys(formData.output_format_dict).map((key) => (
         <div key={key} className="mb-4">
