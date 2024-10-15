@@ -513,7 +513,7 @@ const NoteForm = ({ id, initialData, onSave }) => {
           onClick={handleSave}
           className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-full text-sm px-5 py-2.5"
         >
-          Save
+          Add
         </button>
       </div>
     </div>
