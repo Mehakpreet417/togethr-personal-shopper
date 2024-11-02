@@ -148,7 +148,8 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
           format_model: 'claude-3-haiku-20240307',
           input_format_dict: createFormatDict(content?.input_format_dict || {}),
           output_format_dict: createFormatDict(content?.output_format_dict || {}),
-          next_node_object_id: ""
+          next_node_object_id: "",
+          node_processor_type: content?.what
         }),
       });
   
@@ -176,7 +177,7 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
       </button>
 
       <div>
-        {selectedNoteId !== null && (
+        {selectedNoteId !== null && ( 
           <NoteForm
             id={selectedNoteId}
             initialData={noteData[selectedNoteId]}
@@ -201,7 +202,7 @@ const WorkflowContainer = ({ selectedWorkflowId }) => {
                 onDrag={handleNodeDrag} 
                 onNodeClick={handleNodeClick}
               />
-              {activeNodeId === node.id && <NodeInput id={nodeId} onClose={handleOnClose}/>} 
+              {activeNodeId === node.id && <NodeInput id={nodeId} onClose={handleOnClose} what={noteData[node.id]?.what} />} 
 
               {parentNode && (
                 <div

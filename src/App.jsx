@@ -196,6 +196,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import WorkflowPage from "./pages/WorkFlow"; 
+import Example from "./pages/example"
 import Home from "./pages/Home";
 import "./styles/App.css";
 import { ContentProvider } from '../ContentContest'; 
@@ -226,9 +227,14 @@ const App = () => {
             />
 
             {/* Workflow page route */}
-            <Route 
+            {/* <Route 
               path="/:workflowId" 
               element={<WorkflowPage selectedWorkflowId={selectedWorkflowId} />} 
+            /> */}
+                        {/* Workflow page route */}
+            <Route 
+              path="/:workflowId" 
+              element={<Example  />} 
             />
           </Routes>
         </div>
