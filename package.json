@@ -14,12 +14,15 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.1",
     "@mui/material": "^6.1.1",
+    "@xyflow/react": "^12.3.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-draggable": "^4.4.6",
     "react-flow-renderer": "^10.3.17",
     "react-router-dom": "^6.26.2",
-    "uuid": "^10.0.0"
+    "reactflow": "^11.11.4",
+    "uuid": "^10.0.0",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
