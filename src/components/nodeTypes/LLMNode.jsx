@@ -12,7 +12,7 @@ const LLMNode = ({ data }) => {
       {/* Dynamically create source handles based on the number of output_socket_list elements */}
       {output_socket_list?.map((output, index) => (
         <div key={index} style={{ margin: "5px 0", color: "#fff" }}>
-          <div className="text-sm"><strong>Output:</strong> {output.output_name}</div>
+          <div className="text-[7px]"><strong>Output:</strong> {output.output_name}</div>
           {/* Create a source handle for each output */}
           <Handle
             type="source"
@@ -26,7 +26,7 @@ const LLMNode = ({ data }) => {
       {/* Dynamically create target handles based on the number of input_socket_list elements */}
       {input_socket_list?.map((input, index) => (
         <div key={index} style={{ margin: "5px 0", color: "#fff" }}>
-          <div><strong>Input:</strong> {input.input_name}</div>
+          <div className="text-[7px]"><strong>Input:</strong> {input.input_name}</div>
           {/* Create a target handle for each input */}
           <Handle
             type="target"
