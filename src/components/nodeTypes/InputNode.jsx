@@ -10,8 +10,8 @@ const InputNode = ({ data }) => {
       <div style={{ fontSize: "12px", color: "#aaa" }}>Inputs</div>
       {inputData.map((input, index) => (
         <div key={index} style={{ margin: "5px 0", color: "#fff" }}>
-          <div><strong>Name:</strong> {input.input_name}</div>
-          <div><strong>Description:</strong> {input.input_description}</div>
+          <div className="text-[7px]"><strong>Name:</strong> {input.input_name}</div>
+          <div className="text-[7px]"><strong>Description:</strong> {input.input_description}</div>
         </div>
       ))}
       {/* Dynamically create source handles based on the number of inputData elements */}
