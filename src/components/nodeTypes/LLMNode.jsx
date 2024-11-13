@@ -1,7 +1,7 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
 
-const LLMNode = ({ data }) => {
+const LLMNode = ({ data, isConnectable }) => {
   console.log("data in llm", data)
   const { output_socket_list, input_socket_list } = data; // Accessing output and input socket lists
 
@@ -18,7 +18,8 @@ const LLMNode = ({ data }) => {
             type="source"
             position={Position.Right}
             id={`output-handle-${index}`} // Unique ID for each source handle
-            style={{ top: `${20 + index * 30}px`, background: "#555" }} // Positioning handles vertically
+            style={{ top: `${20 + index * 30}px`, background: "#555" }} 
+            isConnectable={isConnectable}
           />
         </div>
       ))}
@@ -31,8 +32,9 @@ const LLMNode = ({ data }) => {
           <Handle
             type="target"
             position={Position.Left}
-            id={`input-handle-${index}`} // Unique ID for each target handle
-            style={{ top: `${20 + index * 30}px`, background: "#555" }} // Positioning handles vertically
+            id={`input-handle-${index}`} 
+            style={{ top: `${20 + index * 30}px`, background: "#555" }} 
+            isConnectable={isConnectable}
           />
         </div>
       ))}

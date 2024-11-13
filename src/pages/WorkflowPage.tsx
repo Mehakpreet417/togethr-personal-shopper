@@ -549,7 +549,6 @@ const WorkflowEditor: React.FC = () => {
           onSubmit={createNode}
           selectedNodeType={selectedNodeType}
           onNodeTypeChange={handleNodeTypeChange}
-          renderFormFields={renderFormFields}
           closeModal={closeModal}
         />
       )}

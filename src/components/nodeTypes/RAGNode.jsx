@@ -1,7 +1,7 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
 
-const RAGNode = ({ data }) => {
+const RAGNode = ({ data, isConnectable }) => {
   const { output_socket_list, input_socket_list } = data; // Accessing output and input socket lists
 
   return (

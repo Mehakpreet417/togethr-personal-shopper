@@ -250,6 +250,7 @@ const WorkflowEditor = () => {
       const newNode = {
         id: `${nodeIdCounter}`,
         type: typesOfNode,
+        isConnectable: true,
         data: {
           label: formData.node_name || selectedNodeType,
           inputData: formData.input_data || [], // For InputNode

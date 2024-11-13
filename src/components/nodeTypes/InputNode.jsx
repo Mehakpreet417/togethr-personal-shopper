@@ -1,7 +1,7 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
 
-const InputNode = ({ data }) => {
+const InputNode = ({ data, isConnectable }) => {
   const { inputData } = data; // Access inputData directly from data
 
   return (
@@ -22,6 +22,7 @@ const InputNode = ({ data }) => {
           position={Position.Right}
           id={`output-handle-${index}`} // Unique ID for each source handle
           style={{ top: `${20 + index * 30}px`, background: "#555" }} // Positioning handles vertically
+          isConnectable={isConnectable} // Ensure this is set to true
         />
       ))}
     </div>

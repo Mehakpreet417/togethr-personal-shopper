@@ -1,5 +1,3 @@
-
-
 // import React, { useState } from 'react';
 
 // const NodeValuesForm = ({
@@ -10,13 +8,13 @@
 // }) => {
 //   const [formData, setFormData] = useState({
 //     node_name: '',
-//     input_data: [{ 
-//       is_structured: 'select', 
-//       input_name: '', 
-//       input_description: '', 
-//       is_static: false, 
-//       input_value_type: 'string', 
-//       input_value: '' 
+//     input_data: [{
+//       is_structured: 'select',
+//       input_name: '',
+//       input_description: '',
+//       is_static: false,
+//       input_value_type: 'string',
+//       input_value: ''
 //     }],
 //     system_prompt: '',
 //     llm_organization_name: '',
@@ -69,13 +67,13 @@
 //   const handleAddInputData = () => {
 //     setFormData(prevData => ({
 //       ...prevData,
-//       input_data: [...prevData.input_data, { 
-//         is_structured: 'select', 
-//         input_name: '', 
-//         input_description: '', 
-//         is_static: false, 
-//         input_value_type: 'string', 
-//         input_value: '' 
+//       input_data: [...prevData.input_data, {
+//         is_structured: 'select',
+//         input_name: '',
+//         input_description: '',
+//         is_static: false,
+//         input_value_type: 'string',
+//         input_value: ''
 //       }]
 //     }));
 //   };
@@ -129,9 +127,9 @@
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Is Structured
 //                   </label>
-//                   <select 
-//                     name="is_structured" 
-//                     value={input.is_structured} 
+//                   <select
+//                     name="is_structured"
+//                     value={input.is_structured}
 //                     onChange={(e) => handleInputChange(index, e, 'input_data')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   >
@@ -206,7 +204,7 @@
 //                       <input
 //                         type="file"
 //                         name="input_value_file" onChange={(e) => handleFileChange(index, e, 'input_data')}
-//                         className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400" 
+//                         className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400"
 //                       />
 //                     </>
 //                   )}
@@ -241,7 +239,7 @@
 //               onChange={(e) => setFormData({ ...formData, node_name: e.target.value })}
 //               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 //             />
-            
+
 //             <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //               System Prompt
 //             </label>
@@ -250,7 +248,7 @@
 //               onChange={(e) => setFormData({ ...formData, system_prompt: e.target.value })}
 //               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 //             />
-    
+
 //             <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //               LLM Organization Name
 //             </label>
@@ -259,7 +257,7 @@
 //               onChange={(e) => setFormData({ ...formData, llm_organization_name: e.target.value })}
 //               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 //             />
-    
+
 //             <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //               LLM Model Name
 //             </label>
@@ -268,7 +266,7 @@
 //               onChange={(e) => setFormData({ ...formData, llm_model_name: e.target.value })}
 //               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 //             />
-    
+
 //             <h3 className="mt-4 text-lg font-semibold">Input Socket List</h3>
 //             <div className="max-h-60 overflow-y-auto">
 //               {formData.input_socket_list.map((socket, index) => (
@@ -276,16 +274,16 @@
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Is Structured
 //                   </label>
-//                   <select 
-//                     name="is_structured" 
-//                     value={socket.is_structured} 
+//                   <select
+//                     name="is_structured"
+//                     value={socket.is_structured}
 //                     onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   >
 //                     <option value="true">True</option>
 //                     <option value="false">False</option>
 //                   </select>
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Input Name
 //                   </label>
@@ -296,7 +294,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Input Description
 //                   </label>
@@ -306,7 +304,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Is Static
 //                   </label>
@@ -317,7 +315,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
 //                     className="mr-2"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Upload File
 //                   </label>
@@ -326,7 +324,7 @@
 //                     onChange={(e) => handleFileChange(index, e, 'input_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <button
 //                     type="button"
 //                     onClick={() => handleRemoveSocket(index, 'input_socket_list')}
@@ -344,7 +342,7 @@
 //             >
 //               + Add Input Socket
 //             </button>
-    
+
 //             <h3 className="mt-4 text-lg font-semibold">Output Socket List</h3>
 //             <div className="max-h-60 overflow-y-auto">
 //               {formData.output_socket_list.map((socket, index) => (
@@ -352,16 +350,16 @@
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Is Structured
 //                   </label>
-//                   <select 
-//                     name="is_structured" 
-//                     value={socket.is_structured} 
+//                   <select
+//                     name="is_structured"
+//                     value={socket.is_structured}
 //                     onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   >
 //                     <option value="true">True</option>
 //                     <option value="false">False</option>
 //                   </select>
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Input Name
 //                   </label>
@@ -371,7 +369,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Input Description
 //                   </label>
@@ -381,7 +379,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Is Static
 //                   </label>
@@ -392,7 +390,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
 //                     className="mr-2"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Upload File
 //                   </label>
@@ -401,7 +399,7 @@
 //                     onChange={(e) => handleFileChange(index, e, 'output_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <button
 //                     type="button"
 //                     onClick={() => handleRemoveSocket(index, 'output_socket_list')}
@@ -432,7 +430,7 @@
 //               onChange={(e) => setFormData({ ...formData, node_name: e.target.value })}
 //               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 //             />
-            
+
 //             <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //               System Prompt
 //             </label>
@@ -441,7 +439,7 @@
 //               onChange={(e) => setFormData({ ...formData, system_prompt: e.target.value })}
 //               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 //             />
-    
+
 //             <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //               LLM Organization Name
 //             </label>
@@ -450,7 +448,7 @@
 //               onChange={(e) => setFormData({ ...formData, llm_organization_name: e.target.value })}
 //               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 //             />
-    
+
 //             <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //               LLM Model Name
 //             </label>
@@ -459,7 +457,7 @@
 //               onChange={(e) => setFormData({ ...formData, llm_model_name: e.target.value })}
 //               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 //             />
-    
+
 //             <h3 className="mt-4 text-lg font-semibold">Input Socket List</h3>
 //             <div className="max-h-60 overflow-y-auto">
 //               {formData.input_socket_list.map((socket, index) => (
@@ -467,16 +465,16 @@
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Is Structured
 //                   </label>
-//                   <select 
-//                     name="is_structured" 
-//                     value={socket.is_structured} 
+//                   <select
+//                     name="is_structured"
+//                     value={socket.is_structured}
 //                     onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   >
 //                     <option value="true">True</option>
 //                     <option value="false">False</option>
 //                   </select>
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Input Name
 //                   </label>
@@ -487,7 +485,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Input Description
 //                   </label>
@@ -497,7 +495,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Is Static
 //                   </label>
@@ -508,7 +506,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
 //                     className="mr-2"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Upload File
 //                   </label>
@@ -517,7 +515,7 @@
 //                     onChange={(e) => handleFileChange(index, e, 'input_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <button
 //                     type="button"
 //                     onClick={() => handleRemoveSocket(index, 'input_socket_list')}
@@ -535,7 +533,7 @@
 //             >
 //               + Add Input Socket
 //             </button>
-    
+
 //             <h3 className="mt-4 text-lg font-semibold">Output Socket List</h3>
 //             <div className="max-h-60 overflow-y-auto">
 //               {formData.output_socket_list.map((socket, index) => (
@@ -543,16 +541,16 @@
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Is Structured
 //                   </label>
-//                   <select 
-//                     name="is_structured" 
-//                     value={socket.is_structured} 
+//                   <select
+//                     name="is_structured"
+//                     value={socket.is_structured}
 //                     onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   >
 //                     <option value="true">True</option>
 //                     <option value="false">False</option>
 //                   </select>
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Input Name
 //                   </label>
@@ -562,7 +560,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Input Description
 //                   </label>
@@ -572,7 +570,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Is Static
 //                   </label>
@@ -583,7 +581,7 @@
 //                     onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
 //                     className="mr-2"
 //                   />
-    
+
 //                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
 //                     Upload File
 //                   </label>
@@ -592,7 +590,7 @@
 //                     onChange={(e) => handleFileChange(index, e, 'output_socket_list')}
 //                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
 //                   />
-    
+
 //                   <button
 //                     type="button"
 //                     onClick={() => handleRemoveSocket(index, 'output_socket_list')}
@@ -685,7 +683,7 @@
 
 // export default NodeValuesForm;
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const NodeValuesForm = ({
   onSubmit,
@@ -694,48 +692,54 @@ const NodeValuesForm = ({
   closeModal,
 }) => {
   const [formData, setFormData] = useState({
-    node_name: '',
-    input_data: [{ 
-      is_structured: 'select', 
-      input_name: '', 
-      input_description: '', 
-      is_static: false, 
-      next_node_socket_ids: [],
-      input_value: '' 
-    }],
-    system_prompt: '',
-    llm_organization_name: '',
-    llm_model_name: '',
-    formatting_llm_organization: '',
-    formatting_llm_model: '',
-    input_socket_list: [{
-      is_structured: 'true',
-      input_name: '',
-      input_description: '',
-      is_static: false,
-      next_node_socket_ids: [],
-      input_value: ''
-    }],
-    output_socket_list: [{
-      is_structured: 'true',
-      input_name: '',
-      input_description: '',
-      is_static: false,
-      next_node_socket_ids: [],
-      input_value: ''
-    }]
+    node_name: "",
+    input_data: [
+      {
+        is_structured: "true",
+        input_name: "",
+        input_description: "",
+        is_static: false,
+        next_node_socket_ids: [],
+        input_value: "",
+      },
+    ],
+    system_prompt: "",
+    llm_organization_name: "",
+    llm_model_name: "",
+    formatting_llm_organization: "",
+    formatting_llm_model: "",
+    input_socket_list: [
+      {
+        is_structured: "true",
+        input_name: "",
+        input_description: "",
+        is_static: false,
+        next_node_socket_ids: [],
+        input_value: "",
+      },
+    ],
+    output_socket_list: [
+      {
+        is_structured: "true",
+        input_name: "",
+        input_description: "",
+        is_static: false,
+        next_node_socket_ids: [],
+        input_value: "",
+      },
+    ],
   });
 
   const handleInputChange = (index, event, listType) => {
     const { name, value, type, checked } = event.target;
-    if (name === 'is_static') {
-      setFormData(prevData => {
+    if (name === "is_static") {
+      setFormData((prevData) => {
         const newList = [...prevData[listType]];
         newList[index][name] = checked;
         return { ...prevData, [listType]: newList };
       });
     } else {
-      setFormData(prevData => {
+      setFormData((prevData) => {
         const newList = [...prevData[listType]];
         newList[index][name] = value;
         return { ...prevData, [listType]: newList };
@@ -745,7 +749,7 @@ const NodeValuesForm = ({
 
   const handleFileChange = (index, event, listType) => {
     const file = event.target.files[0];
-    setFormData(prevData => {
+    setFormData((prevData) => {
       const newList = [...prevData[listType]];
       newList[index].input_value.file_name = file.name; // Store file name
       newList[index].input_value.blob_name = file; // Store file object
@@ -754,21 +758,24 @@ const NodeValuesForm = ({
   };
 
   const handleAddInputData = () => {
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      input_data: [...prevData.input_data, { 
-        is_structured: 'select', 
-        input_name: '', 
-        input_description: '', 
-        is_static: false, 
-        input_value_type: 'string', 
-        input_value: '' 
-      }]
+      input_data: [
+        ...prevData.input_data,
+        {
+          is_structured: "select",
+          input_name: "",
+          input_description: "",
+          is_static: false,
+          input_value_type: "string",
+          input_value: "",
+        },
+      ],
     }));
   };
 
   const handleRemoveInputData = (index) => {
-    setFormData(prevData => {
+    setFormData((prevData) => {
       const newInputData = prevData.input_data.filter((_, i) => i !== index);
       return { ...prevData, input_data: newInputData };
     });
@@ -776,21 +783,21 @@ const NodeValuesForm = ({
 
   const handleAddSocket = (listType) => {
     const newSocket = {
-      is_structured: 'true',
-      input_name: '',
-      input_description: '',
+      is_structured: "true",
+      input_name: "",
+      input_description: "",
       is_static: false,
       next_node_socket_ids: [],
-      input_value: { blob_name: null, file_name: null }
+      input_value: { blob_name: null, file_name: null },
     };
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [listType]: [...prevData[listType], newSocket]
+      [listType]: [...prevData[listType], newSocket],
     }));
   };
 
   const handleRemoveSocket = (index, listType) => {
-    setFormData(prevData => {
+    setFormData((prevData) => {
       const newList = prevData[listType].filter((_, i) => i !== index);
       return { ...prevData, [listType]: newList };
     });
@@ -801,41 +808,50 @@ const NodeValuesForm = ({
       case "INPUT":
         return (
           <>
-            <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
-              Node Name
-            </label>
-            <input
-              name="node_name"
-              onChange={(e) => setFormData({ ...formData, node_name: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary- 500 dark:focus:border-primary-500"
-            />
-            <h3 className="mt-4 text-lg font-semibold">Input Data</h3>
-            <div className="max-h-60 overflow-y-auto">
+            <div className="w-[48%]">
+              <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                Node Name
+              </label>
+              <input
+                name="node_name"
+                onChange={(e) =>
+                  setFormData({ ...formData, node_name: e.target.value })
+                }
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary- 500 dark:focus:border-primary-500"
+              />
+            </div>
+            <div className="max-h-96 overflow-y-auto min-w-[100%] mt-5">
+              <h3 className="mt-4 text-lg font-semibold dark:text-white">
+                Input Data
+              </h3>
               {formData.input_data.map((input, index) => (
-                <div key={index} className="border p-4 mb-4 rounded-lg">
+                <div key={index} className="border p-4 mb-4 rounded-lg flex flex-wrap justify-between items-center">
+                  <div className="w-[45%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Is Structured
                   </label>
-                  <select 
-                    name="is_structured" 
-                    value={input.is_structured} 
-                    onChange={(e) => handleInputChange(index, e, 'input_data')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                  <select
+                    name="is_structured"
+                    value={input.is_structured}
+                    onChange={(e) => handleInputChange(index, e, "input_data")}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
-                    <option value="select">Select</option>
                     <option value="true">True</option>
                     <option value="false">False</option>
                   </select>
+                  </div>
 
+                  <div className="w-[45%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Name
                   </label>
                   <input
                     name="input_name"
                     value={input.input_name}
-                    onChange={(e) => handleInputChange(index, e, 'input_data')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) => handleInputChange(index, e, "input_data")}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
+                  </div>
 
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Description
@@ -843,10 +859,11 @@ const NodeValuesForm = ({
                   <input
                     name="input_description"
                     value={input.input_description}
-                    onChange={(e) => handleInputChange(index, e, 'input_data')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) => handleInputChange(index, e, "input_data")}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
 
+<div className="w-[100%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Is Static
                   </label>
@@ -854,18 +871,18 @@ const NodeValuesForm = ({
                     type="checkbox"
                     name="is_static"
                     checked={input.is_static}
-                    onChange={(e) => handleInputChange(index, e, 'input_data')}
+                    onChange={(e) => handleInputChange(index, e, "input_data")}
                     className="mr-2"
                   />
-
+</div>
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Value Type
                   </label>
                   <select
                     name="input_value_type"
                     value={input.input_value_type}
-                    onChange={(e) => handleInputChange(index, e, 'input_data')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) => handleInputChange(index, e, "input_data")}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option value="string">String</option>
                     <option value="file">File</option>
@@ -879,7 +896,9 @@ const NodeValuesForm = ({
                       <textarea
                         name="input_value"
                         value={input.input_value}
-                        onChange={(e) => handleInputChange(index, e, 'input_data')}
+                        onChange={(e) =>
+                          handleInputChange(index, e, "input_data")
+                        }
                         rows="4"
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Enter input value"
@@ -893,7 +912,9 @@ const NodeValuesForm = ({
                       <input
                         type="file"
                         name="input_value_file"
-                        onChange={(e) => handleFileChange(index, e, 'input_data')}
+                        onChange={(e) =>
+                          handleFileChange(index, e, "input_data")
+                        }
                         className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400"
                       />
                     </>
@@ -911,7 +932,7 @@ const NodeValuesForm = ({
             </div>
             <button
               type="button"
-              onClick={ handleAddInputData}
+              onClick={handleAddInputData}
               className="mt-4 text-blue-600"
             >
               + Add Input Data
@@ -920,80 +941,109 @@ const NodeValuesForm = ({
         );
       case "RAG":
         return (
-          <div className="max-h-80 overflow-y-auto">
-            <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
-              Node Name
-            </label>
-            <input
-              name="node_name"
-              onChange={(e) => setFormData({ ...formData, node_name: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            />
-            
+          <>
+            <div className="w-[48%]">
+              <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                Node Name
+              </label>
+              <input
+                name="node_name"
+                onChange={(e) =>
+                  setFormData({ ...formData, node_name: e.target.value })
+                }
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              />
+            </div>
+
             <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
               System Prompt
             </label>
             <input
               name="system_prompt"
-              onChange={(e) => setFormData({ ...formData, system_prompt: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, system_prompt: e.target.value })
+              }
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             />
-    
-            <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
-              LLM Organization Name
-            </label>
-            <input
-              name="llm_organization_name"
-              onChange={(e) => setFormData({ ...formData, llm_organization_name: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            />
-    
-            <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
-              LLM Model Name
-            </label>
-            <input
-              name="llm_model_name"
-              onChange={(e) => setFormData({ ...formData, llm_model_name: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            />
-    
-            <h3 className="mt-4 text-lg font-semibold">Input Socket List</h3>
-            <div className="max-h-60 overflow-y-auto">
+
+            <div className="w-[48%]">
+              <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                LLM Organization Name
+              </label>
+              <input
+                name="llm_organization_name"
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    llm_organization_name: e.target.value,
+                  })
+                }
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              />
+            </div>
+
+            <div className="w-[48%]">
+              <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                LLM Model Name
+              </label>
+              <input
+                name="llm_model_name"
+                onChange={(e) =>
+                  setFormData({ ...formData, llm_model_name: e.target.value })
+                }
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              />
+            </div>
+
+            
+            <div className="max-h-60 overflow-y-auto min-w-[100%] mt-5">
+            <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">Input Socket List</h3>
               {formData.input_socket_list.map((socket, index) => (
-                <div key={index} className="border p-4 mb-4 rounded-lg">
+                <div key={index} className="border p-4 mb-4 rounded-lg flex flex-wrap justify-between items-center">
+                  <div className="w-[45%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Is Structured
                   </label>
-                  <select 
-                    name="is_structured" 
-                    value={socket.is_structured} 
-                    onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                  <select
+                    name="is_structured"
+                    value={socket.is_structured}
+                    onChange={(e) =>
+                      handleInputChange(index, e, "input_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option value="true">True</option>
                     <option value="false">False</option>
                   </select>
-    
+                  </div>
+
+                  <div className="w-[45%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Name
                   </label>
                   <input
                     name="input_name"
                     value={socket.input_name}
-                    onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) =>
+                      handleInputChange(index, e, "input_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
-    
+                  </div>
+
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Description
                   </label>
                   <input
                     name="input_description"
                     value={socket.input_description}
-                    onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
-                    className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) =>
+                      handleInputChange(index, e, "input_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
-    
+
+<div className="w-[100%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Is Static
                   </label>
@@ -1001,24 +1051,27 @@ const NodeValuesForm = ({
                     type="checkbox"
                     name="is_static"
                     checked={socket.is_static}
-                    onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
+                    onChange={(e) =>
+                      handleInputChange(index, e, "input_socket_list")
+                    }
                     className="mr-2"
                   />
+                  </div>
 
-<label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Value Type
                   </label>
                   <select
                     name="input_value_type"
                     value={socket.input_value_type}
-                    onChange={(e) => handleInputChange(index, e, 'input_data')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) => handleInputChange(index, e, "input_data")}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option value="string">String</option>
                     <option value="file">File</option>
                   </select>
-    
-    {socket.input_value_type === "string" ? (
+
+                  {socket.input_value_type === "string" ? (
                     <>
                       <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                         Input Value
@@ -1026,7 +1079,9 @@ const NodeValuesForm = ({
                       <textarea
                         name="input_value"
                         value={socket.input_value}
-                        onChange={(e) => handleInputChange(index, e, 'input_data')}
+                        onChange={(e) =>
+                          handleInputChange(index, e, "input_data")
+                        }
                         rows="4"
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Enter input value"
@@ -1040,15 +1095,19 @@ const NodeValuesForm = ({
                       <input
                         type="file"
                         name="input_value_file"
-                        onChange={(e) => handleFileChange(index, e, 'input_data')}
+                        onChange={(e) =>
+                          handleFileChange(index, e, "input_data")
+                        }
                         className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400"
                       />
                     </>
                   )}
-    
+
                   <button
                     type="button"
-                    onClick={() => handleRemoveSocket(index, 'input_socket_list')}
+                    onClick={() =>
+                      handleRemoveSocket(index, "input_socket_list")
+                    }
                     className="mt-2 text-red-600"
                   >
                     Remove Input Socket
@@ -1058,49 +1117,61 @@ const NodeValuesForm = ({
             </div>
             <button
               type="button"
-              onClick={() => handleAddSocket('input_socket_list')}
+              onClick={() => handleAddSocket("input_socket_list")}
               className="mt-4 text-blue-600"
             >
               + Add Input Socket
             </button>
-    
-            <h3 className="mt-4 text-lg font-semibold">Output Socket List</h3>
-            <div className="max-h-60 overflow-y-auto">
+
+            
+            <div className="max-h-60 overflow-y-auto min-w-[100%] mt-5">
+            <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">Output Socket List</h3>
               {formData.output_socket_list.map((socket, index) => (
-                <div key={index} className="border p-4 mb-4 rounded-lg">
+                <div key={index} className="border p-4 mb-4 rounded-lg flex flex-wrap justify-between items-center">
+                  <div className="w-[45%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Is Structured
                   </label>
-                  <select 
-                    name="is_structured" 
-                    value={socket.is_structured} 
-                    onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                  <select
+                    name="is_structured"
+                    value={socket.is_structured}
+                    onChange={(e) =>
+                      handleInputChange(index, e, "output_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option value="true">True</option>
                     <option value="false">False</option>
                   </select>
-    
+                  </div>
+
+                  <div className="w-[45%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Name
                   </label>
                   <input
                     name="input_name"
                     value={socket.input_name}
-                    onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) =>
+                      handleInputChange(index, e, "output_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
-    
+                  </div>
+
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Description
                   </label>
                   <input
                     name="input_description"
                     value={socket.input_description}
-                    onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) =>
+                      handleInputChange(index, e, "output_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
-    
+
+<div className="w-[100%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Is Static
                   </label>
@@ -1108,24 +1179,27 @@ const NodeValuesForm = ({
                     type="checkbox"
                     name="is_static"
                     checked={socket.is_static}
-                    onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
+                    onChange={(e) =>
+                      handleInputChange(index, e, "output_socket_list")
+                    }
                     className="mr-2"
                   />
+                  </div>
 
-<label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Value Type
                   </label>
                   <select
                     name="input_value_type"
                     value={socket.input_value_type}
-                    onChange={(e) => handleInputChange(index, e, 'input_data')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) => handleInputChange(index, e, "input_data")}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option value="string">String</option>
                     <option value="file">File</option>
                   </select>
-    
-    {socket.input_value_type === "string" ? (
+
+                  {socket.input_value_type === "string" ? (
                     <>
                       <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                         Input Value
@@ -1133,7 +1207,9 @@ const NodeValuesForm = ({
                       <textarea
                         name="input_value"
                         value={input.input_value}
-                        onChange={(e) => handleInputChange(index, e, 'input_data')}
+                        onChange={(e) =>
+                          handleInputChange(index, e, "input_data")
+                        }
                         rows="4"
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Enter input value"
@@ -1147,15 +1223,19 @@ const NodeValuesForm = ({
                       <input
                         type="file"
                         name="input_value_file"
-                        onChange={(e) => handleFileChange(index, e, 'input_data')}
+                        onChange={(e) =>
+                          handleFileChange(index, e, "input_data")
+                        }
                         className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400"
                       />
                     </>
                   )}
-    
+
                   <button
                     type="button"
-                    onClick={() => handleRemoveSocket(index, 'output_socket_list')}
+                    onClick={() =>
+                      handleRemoveSocket(index, "output_socket_list")
+                    }
                     className="mt-2 text-red-600"
                   >
                     Remove Output Socket
@@ -1165,88 +1245,118 @@ const NodeValuesForm = ({
             </div>
             <button
               type="button"
-              onClick={() => handleAddSocket('output_socket_list')}
+              onClick={() => handleAddSocket("output_socket_list")}
               className="mt-4 text-blue-600"
             >
               + Add Output Socket
             </button>
-            </div>
+          </>
         );
       case "LLM":
         return (
-          <div div className="max-h-80 overflow-y-auto">
-            <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
-              Node Name
-            </label>
-            <input
-              name="node_name"
-              onChange={(e) => setFormData({ ...formData, node_name: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            />
-            
+          <>
+            <div className="w-[48%]">
+              <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                Node Name
+              </label>
+              <input
+                name="node_name"
+                onChange={(e) =>
+                  setFormData({ ...formData, node_name: e.target.value })
+                }
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              />
+            </div>
+
             <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
               System Prompt
             </label>
             <input
               name="system_prompt"
-              onChange={(e) => setFormData({ ...formData, system_prompt: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, system_prompt: e.target.value })
+              }
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             />
-    
-            <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
-              LLM Organization Name
-            </label>
-            <input
-              name="llm_organization_name"
-              onChange={(e) => setFormData({ ...formData, llm_organization_name: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            />
-    
-            <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
-              LLM Model Name
-            </label>
-            <input
-              name="llm_model_name"
-              onChange={(e) => setFormData({ ...formData, llm_model_name: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            />
-    
-            <h3 className="mt-4 text-lg font-semibold">Input Socket List</h3>
-            <div className="max-h-60 overflow-y-auto">
+
+            <div className="w-[48%]">
+              <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                LLM Organization Name
+              </label>
+              <input
+                name="llm_organization_name"
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    llm_organization_name: e.target.value,
+                  })
+                }
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              />
+            </div>
+
+            <div className="w-[48%]">
+              <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                LLM Model Name
+              </label>
+              <input
+                name="llm_model_name"
+                onChange={(e) =>
+                  setFormData({ ...formData, llm_model_name: e.target.value })
+                }
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              />
+            </div>
+
+            
+            <div className="max-h-60 overflow-y-auto min-w-[100%] mt-5">
+            <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">Input Socket List</h3>
               {formData.input_socket_list.map((socket, index) => (
-                <div key={index} className="border p-4 mb-4 rounded-lg">
+                <div key={index} className="border p-4 mb-4 rounded-lg flex flex-wrap justify-between items-center">
+                  <div className="w-[45%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Is Structured
                   </label>
-                  <select 
-                    name="is_structured" 
-                    value={socket.is_structured} 
-                    onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                  <select
+                    name="is_structured"
+                    value={socket.is_structured}
+                    onChange={(e) =>
+                      handleInputChange(index, e, "input_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option value="true">True</option>
                     <option value="false">False</option>
                   </select>
-    
+                  </div>
+
+                  <div className="w-[45%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Name
                   </label>
                   <input
                     name="input_name"
                     value={socket.input_name}
-                    onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) =>
+                      handleInputChange(index, e, "input_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
-    
+                  </div>
+
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Description
                   </label>
                   <input
                     name="input_description"
                     value={socket.input_description}
-                    onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) =>
+                      handleInputChange(index, e, "input_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
+
+<div className="w-[100%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Is Static
                   </label>
@@ -1254,32 +1364,37 @@ const NodeValuesForm = ({
                     type="checkbox"
                     name="is_static"
                     checked={socket.is_static}
-                    onChange={(e) => handleInputChange(index, e, 'input_socket_list')}
+                    onChange={(e) =>
+                      handleInputChange(index, e, "input_socket_list")
+                    }
                     className="mr-2"
                   />
+                  </div>
 
-<label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Value Type
                   </label>
                   <select
                     name="input_value_type"
                     value={socket.input_value_type}
-                    onChange={(e) => handleInputChange(index, e, 'input_data')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) => handleInputChange(index, e, "input_data")}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option value="string">String</option>
                     <option value="file">File</option>
                   </select>
-    
-    {socket.input_value_type === "string" ? (
+
+                  {socket.input_value_type === "string" ? (
                     <>
                       <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                         Input Value
                       </label>
                       <textarea
                         name="input_value"
-                        value={input.input_value}
-                        onChange={(e) => handleInputChange(index, e, 'input_data')}
+                        value={socket.input_value}
+                        onChange={(e) =>
+                          handleInputChange(index, e, "input_data")
+                        }
                         rows="4"
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Enter input value"
@@ -1293,15 +1408,19 @@ const NodeValuesForm = ({
                       <input
                         type="file"
                         name="input_value_file"
-                        onChange={(e) => handleFileChange(index, e, 'input_data')}
+                        onChange={(e) =>
+                          handleFileChange(index, e, "input_data")
+                        }
                         className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400"
                       />
                     </>
                   )}
-    
+
                   <button
                     type="button"
-                    onClick={() => handleRemoveSocket(index, 'input_socket_list')}
+                    onClick={() =>
+                      handleRemoveSocket(index, "input_socket_list")
+                    }
                     className="mt-2 text-red-600"
                   >
                     Remove Input Socket
@@ -1311,49 +1430,61 @@ const NodeValuesForm = ({
             </div>
             <button
               type="button"
-              onClick={() => handleAddSocket('input_socket_list')}
+              onClick={() => handleAddSocket("input_socket_list")}
               className="mt-4 text-blue-600"
             >
               + Add Input Socket
             </button>
-    
-            <h3 className="mt-4 text-lg font-semibold">Output Socket List</h3>
-            <div className="max-h-60 overflow-y-auto">
+
+            
+            <div className="max-h-60 overflow-y-auto min-w-[100%] mt-5">
+            <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">Output Socket List</h3>
               {formData.output_socket_list.map((socket, index) => (
-                <div key={index} className="border p-4 mb-4 rounded-lg">
+                <div key={index} className="border p-4 mb-4 rounded-lg flex flex-wrap justify-between items-center">
+                  <div className="w-[45%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Is Structured
                   </label>
-                  <select 
-                    name="is_structured" 
-                    value={socket.is_structured} 
-                    onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                  <select
+                    name="is_structured"
+                    value={socket.is_structured}
+                    onChange={(e) =>
+                      handleInputChange(index, e, "output_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option value="true">True</option>
                     <option value="false">False</option>
                   </select>
-    
+                  </div>
+
+                  <div className="w-[45%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Name
                   </label>
                   <input
                     name="input_name"
                     value={socket.input_name}
-                    onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) =>
+                      handleInputChange(index, e, "output_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
-    
+                  </div>
+
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Description
                   </label>
                   <input
                     name="input_description"
                     value={socket.input_description}
-                    onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) =>
+                      handleInputChange(index, e, "output_socket_list")
+                    }
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   />
-    
+
+<div className="w-[100%]">
                   <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Is Static
                   </label>
@@ -1361,24 +1492,27 @@ const NodeValuesForm = ({
                     type="checkbox"
                     name="is_static"
                     checked={socket.is_static}
-                    onChange={(e) => handleInputChange(index, e, 'output_socket_list')}
+                    onChange={(e) =>
+                      handleInputChange(index, e, "output_socket_list")
+                    }
                     className="mr-2"
                   />
+                  </div>
 
-<label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                     Input Value Type
                   </label>
                   <select
                     name="input_value_type"
                     value={socket.input_value_type}
-                    onChange={(e) => handleInputChange(index, e, 'input_data')}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    onChange={(e) => handleInputChange(index, e, "input_data")}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option value="string">String</option>
                     <option value="file">File</option>
                   </select>
-    
-    {socket.input_value_type === "string" ? (
+
+                  {socket.input_value_type === "string" ? (
                     <>
                       <label className="block mb-1 mt-2 text-sm font-medium text-gray-900 dark:text-white">
                         Input Value
@@ -1386,7 +1520,9 @@ const NodeValuesForm = ({
                       <textarea
                         name="input_value"
                         value={input.input_value}
-                        onChange={(e) => handleInputChange(index, e, 'input_data')}
+                        onChange={(e) =>
+                          handleInputChange(index, e, "input_data")
+                        }
                         rows="4"
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Enter input value"
@@ -1400,15 +1536,19 @@ const NodeValuesForm = ({
                       <input
                         type="file"
                         name="input_value_file"
-                        onChange={(e) => handleFileChange(index, e, 'input_data')}
+                        onChange={(e) =>
+                          handleFileChange(index, e, "input_data")
+                        }
                         className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400"
                       />
                     </>
                   )}
-    
+
                   <button
                     type="button"
-                    onClick={() => handleRemoveSocket(index, 'output_socket_list')}
+                    onClick={() =>
+                      handleRemoveSocket(index, "output_socket_list")
+                    }
                     className="mt-2 text-red-600"
                   >
                     Remove Output Socket
@@ -1418,12 +1558,12 @@ const NodeValuesForm = ({
             </div>
             <button
               type="button"
-              onClick={() => handleAddSocket('output_socket_list')}
+              onClick={() => handleAddSocket("output_socket_list")}
               className="mt-4 text-blue-600"
             >
               + Add Output Socket
             </button>
-          </div>
+          </>
         );
       default:
         return null;
@@ -1431,7 +1571,7 @@ const NodeValuesForm = ({
   };
 
   const handleSubmit = () => {
-    onSubmit(formData); 
+    onSubmit(formData);
   };
 
   return (
@@ -1467,27 +1607,29 @@ const NodeValuesForm = ({
               </button>
             </div>
 
-            <div className="p-4 md:p-5 max-h-[2000px] overflow-y-auto">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Select Node Type
-              </label>
-              <select
-                value={selectedNodeType}
-                onChange={onNodeTypeChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 z-50"
-              >
-                <option value="">Select</option>
-                <option value="INPUT">INPUT</option>
-                <option value="LLM">LLM</option>
-                <option value="RAG">RAG</option>
-              </select>
+            <div className="p-4 md:p-5 max-h-[600px] overflow-y-auto flex justify-between items-center flex-wrap">
+              <div className="w-[48%]">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">
+                  Select Node Type
+                </label>
+                <select
+                  value={selectedNodeType}
+                  onChange={onNodeTypeChange}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 z-50"
+                >
+                  <option value="">Select</option>
+                  <option value="INPUT">INPUT</option>
+                  <option value="LLM">LLM</option>
+                  <option value="RAG">RAG</option>
+                </select>
+              </div>
 
               {renderFormFields()}
 
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="ml-auto mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Create
               </button>
