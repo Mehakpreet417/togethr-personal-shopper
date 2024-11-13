@@ -26,12 +26,18 @@ const WorkflowEditor = () => {
     (params) => {
       const sourceNode = nodes.find((node) => node.id === params.source);
       const targetNode = nodes.find((node) => node.id === params.target);
-
+  
       if (sourceNode && targetNode) {
         // Get the index of the connected handle to determine which input data to send
         const handleIndex = parseInt(params.sourceHandle.split("-")[2], 10); // Extract index from handle ID
+        
+        // Ensure inputData exists
         const inputData = sourceNode.data.inputData[handleIndex]; // Get the specific input data
-
+        if (!inputData) {
+          console.error("No input data found for the connected handle.");
+          return;
+        }
+  
         // Check if the target node is an LLMNode or RAGNode
         if (targetNode.type === "llmNode" || targetNode.type === "ragNode") {
           // Update the target node's input_socket_list with the input data from the InputNode
@@ -45,16 +51,19 @@ const WorkflowEditor = () => {
               ],
             },
           };
-
+  
           // Update the nodes state with the modified target node
           setNodes((nds) =>
             nds.map((node) =>
               node.id === targetNode.id ? updatedTargetNode : node
             )
           );
+  
+          // Log the updated target node to confirm the data has been passed
+          console.log("Updated target node:", updatedTargetNode);
         }
       }
-
+  
       // Add the edge to the state
       setEdges((eds) => addEdge({ ...params, arrowHeadType: "arrow" }, eds));
     },
