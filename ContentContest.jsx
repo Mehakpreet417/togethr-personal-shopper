@@ -1,10 +1,8 @@
 "use client";
 import React, { createContext, useContext, useMemo, useState } from 'react';
 
-// Create ContentContext
 const ContentContext = createContext(undefined);
 
-// Custom hook to use ContentContext
 export const useContentContext = () => {
   const context = useContext(ContentContext);
   if (!context) {
@@ -13,10 +11,9 @@ export const useContentContext = () => {
   return context;
 };
 
-// ContentProvider component
 export const ContentProvider = ({ children }) => {
  
-  const [organizations, setOrganizations] = useState([]);  // Store organizations
+  const [organizations, setOrganizations] = useState([]);  
   const [models, setModels] = useState({});              
 
   const [nodes, setNodes] = useState([]);                 

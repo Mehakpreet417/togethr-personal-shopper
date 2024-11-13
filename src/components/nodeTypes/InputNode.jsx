@@ -1,28 +1,20 @@
-import React from "react";
-import { Handle, Position } from "reactflow";
+import React from 'react';
+import { Handle, Position } from 'react-flow-renderer';
 
-const InputNode = ({ data, isConnectable }) => {
-  const { inputData } = data; // Access inputData directly from data
+const InputNode = ({ data }) => {
+  const { id, label, inputData } = data;
 
   return (
     <div style={{ padding: "10px", borderRadius: "8px", background: "#2c2f36", color: "white", width: "200px", textAlign: "center" }}>
-      <h4>{data.label}</h4> {/* Use the label passed in data */}
+      <h4>{label}</h4>
       <div style={{ fontSize: "12px", color: "#aaa" }}>Inputs</div>
-      {inputData.map((input, index) => (
-        <div key={index} style={{ margin: "5px 0", color: "#fff" }}>
-          <div className="text-[7px]"><strong>Name:</strong> {input.input_name}</div>
-          <div className="text-[7px]"><strong>Description:</strong> {input.input_description}</div>
-        </div>
-      ))}
-      {/* Dynamically create source handles based on the number of inputData elements */}
       {inputData.map((_, index) => (
         <Handle
           key={index}
           type="source"
           position={Position.Right}
-          id={`output-handle-${index}`} // Unique ID for each source handle
-          style={{ top: `${20 + index * 30}px`, background: "#555" }} // Positioning handles vertically
-          isConnectable={isConnectable} // Ensure this is set to true
+          id={`${id}-source-${index}`} // Ensure unique ID for each handle
+          style={{ top: `${20 * index + 30}px`, background: "#555" }} 
         />
       ))}
     </div>

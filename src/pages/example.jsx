@@ -8,7 +8,7 @@ import ReactFlow, {
   useEdgesState,
 } from "react-flow-renderer";
 import NodeValuesForm from "../components/NodeValuesForm";
-import nodeTypes from "../components/nodeTypes/NodeTypes"
+import nodeTypes from "../components/nodeTypes/NodeTypes";
 
 const initialNodes = [];
 
@@ -22,31 +22,16 @@ const WorkflowEditor = () => {
   const [sasUrl, setSasUrl] = useState(""); // State to store SAS URL
   const [blobName, setBlobName] = useState("");
 
-  // const onConnect = useCallback(
-  //   (params) =>
-  //     setEdges((eds) =>
-  //       addEdge(
-  //         {
-  //           ...params,
-  //           arrowHeadType: "arrow",
-  //           markerEnd: { type: "arrowclosed" },
-  //         },
-  //         eds
-  //       )
-  //     ),
-  //   [setEdges]
-  // );
-
   const onConnect = useCallback(
     (params) => {
       const sourceNode = nodes.find((node) => node.id === params.source);
       const targetNode = nodes.find((node) => node.id === params.target);
-  
+
       if (sourceNode && targetNode) {
         // Get the index of the connected handle to determine which input data to send
-        const handleIndex = parseInt(params.sourceHandle.split('-')[2], 10); // Extract index from handle ID
+        const handleIndex = parseInt(params.sourceHandle.split("-")[2], 10); // Extract index from handle ID
         const inputData = sourceNode.data.inputData[handleIndex]; // Get the specific input data
-  
+
         // Check if the target node is an LLMNode or RAGNode
         if (targetNode.type === "llmNode" || targetNode.type === "ragNode") {
           // Update the target node's input_socket_list with the input data from the InputNode
@@ -60,14 +45,16 @@ const WorkflowEditor = () => {
               ],
             },
           };
-  
+
           // Update the nodes state with the modified target node
           setNodes((nds) =>
-            nds.map((node) => (node.id === targetNode.id ? updatedTargetNode : node))
+            nds.map((node) =>
+              node.id === targetNode.id ? updatedTargetNode : node
+            )
           );
         }
       }
-  
+
       // Add the edge to the state
       setEdges((eds) => addEdge({ ...params, arrowHeadType: "arrow" }, eds));
     },
@@ -92,7 +79,6 @@ const WorkflowEditor = () => {
   const handleInputTypeChange = (e) => {
     setInputType(e.target.value);
   };
-
 
   const createSasUrl = async (file) => {
     const postData = {
@@ -126,31 +112,31 @@ const WorkflowEditor = () => {
 
   const uploadFileToSasUrl = async (file, sas_url) => {
     console.log("url in put ", sas_url);
-  
+
     const options = {
       method: "PUT",
       headers: {
-        mode: 'no-cors',
-        'Content-Type': file.type  // Set MIME type dynamically
+        mode: "no-cors",
+        "Content-Type": file.type, // Set MIME type dynamically
       },
-      body: file,  // The actual file to upload
+      body: file, // The actual file to upload
       // Remove mode: "no-cors" if possible for proper response handling
     };
-  
+
     try {
       const response = await fetch(sas_url, options);
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Failed to upload file");
       }
-  
+
       alert("File uploaded successfully!"); // Alert user on successful upload
     } catch (error) {
       console.error("Error uploading file:", error);
     }
   };
-  
+
   const createInputNode = async (file) => {
     // Call createSasUrl to get SAS URL and blob name
     const sasResult = await createSasUrl(file);
@@ -158,40 +144,39 @@ const WorkflowEditor = () => {
     const { blob_name } = sasResult;
     const { sas_url } = sasResult;
 
-      await uploadFileToSasUrl(file, sas_url);
+    await uploadFileToSasUrl(file, sas_url);
 
-      const workflowid = localStorage.getItem("selectedWorkflowId"); // Replace with the actual workflow ID
-      console.log("workflow if in input file create fucntion", workflowid);
-      const newNode = {
-        id: `${nodeIdCounter}`,
-        type: "inputNode",
-        data: { label: `Input node_${nodeIdCounter}` }, // Node label
-        position: { x: Math.random() * 400, y: Math.random() * 400 },
-      };
+    const workflowid = localStorage.getItem("selectedWorkflowId"); // Replace with the actual workflow ID
+    console.log("workflow if in input file create fucntion", workflowid);
+    const newNode = {
+      id: `${nodeIdCounter}`,
+      type: "inputNode",
+      data: { label: `Input node_${nodeIdCounter}` }, // Node label
+      position: { x: Math.random() * 400, y: Math.random() * 400 },
+    };
 
-      const nodePayload = {
-        node_name: `Input node_${nodeIdCounter}`,
-        node_type: "INPUT",
-        next_node_ids: formData.next_node_ids
-          ? formData.next_node_ids.split(",")
-          : [],
-        input_socket_list: [
-          {
-            is_structured: true,
-            input_name: "context",
-            input_description: "context for answering user query",
-            is_static: false,
-            next_node_socket_ids: formData.next_node_socket_ids
-              ? formData.next_node_socket_ids.split(",")
-              : [],
-            input_value: {
-              file_name: file.name, // File name from the input
-              blob_name: blob_name, // Blob name from the SAS URL response
-            },
+    const nodePayload = {
+      node_name: `Input node_${nodeIdCounter}`,
+      node_type: "INPUT",
+      next_node_ids: formData.next_node_ids
+        ? formData.next_node_ids.split(",")
+        : [],
+      input_socket_list: [
+        {
+          is_structured: true,
+          input_name: "context",
+          input_description: "context for answering user query",
+          is_static: false,
+          next_node_socket_ids: formData.next_node_socket_ids
+            ? formData.next_node_socket_ids.split(",")
+            : [],
+          input_value: {
+            file_name: file.name, // File name from the input
+            blob_name: blob_name, // Blob name from the SAS URL response
           },
-        ],
-      };
-
+        },
+      ],
+    };
 
     try {
       const workflowid = localStorage.getItem("selectedWorkflowId");
@@ -220,25 +205,23 @@ const WorkflowEditor = () => {
   };
 
   const createNode = async (formData) => {
-
-    console.log("form data", formData)
-    console.log("input data", formData.input_data)
-    console.log("is struc", formData.input_data.is_structured)
+    console.log("form data", formData);
+    console.log("input data", formData.input_data);
+    console.log("is struc", formData.input_data.is_structured);
     if (!selectedNodeType) {
       alert("Please select a node type.");
       return;
     }
 
-   var typesOfNode;
+    var typesOfNode;
 
-    if(selectedNodeType === "INPUT"){
+    if (selectedNodeType === "INPUT") {
       typesOfNode = "inputNode";
-    }else if(selectedNodeType === "LLM"){
+    } else if (selectedNodeType === "LLM") {
       typesOfNode = "llmNode";
-    }
-    else if(selectedNodeType === "RAG"){
+    } else if (selectedNodeType === "RAG") {
       typesOfNode = "ragNode";
-    }else{
+    } else {
       alert("Please select correct node type.");
     }
 
@@ -253,14 +236,13 @@ const WorkflowEditor = () => {
         isConnectable: true,
         data: {
           label: formData.node_name || selectedNodeType,
-          inputData: formData.input_data || [], // For InputNode
-          // Add other properties relevant to LLMNode or RAGNode
+          inputData: formData.input_data || [], 
           system_prompt: formData.system_prompt || "", // For LLM and RAG
           llm_organization_name: formData.llm_organization_name || "", // For LLM and RAG
           llm_model_name: formData.llm_model_name || "", // For LLM and RAG
-input_socket_list: formData.input_socket_list || [],
-output_socket_list: formData.output_socket_list || [],
-      },
+          input_socket_list: formData.input_socket_list || [],
+          output_socket_list: formData.output_socket_list || [],
+        },
         position: { x: Math.random() * 400, y: Math.random() * 400 },
       };
 
@@ -276,19 +258,23 @@ output_socket_list: formData.output_socket_list || [],
         RAG: {
           node_name: formData.node_name || "",
           node_type: "RAG",
-          next_node_ids: formData.next_node_ids ? formData.next_node_ids.split(",") : [],
+          next_node_ids: formData.next_node_ids
+            ? formData.next_node_ids.split(",")
+            : [],
           system_prompt: formData.system_prompt || "",
           llm_organization_name: formData.llm_organization_name || "",
           llm_model_name: formData.llm_model_name || "",
           formatting_llm_organization: null,
           formatting_llm_model: null,
-          input_socket_list:   [],
-          output_socket_list:  [],
+          input_socket_list: [],
+          output_socket_list: [],
         },
         LLM: {
           node_name: formData.node_name || "",
           node_type: "LLM",
-          next_node_ids: formData.next_node_ids ? formData.next_node_ids.split(",") : [],
+          next_node_ids: formData.next_node_ids
+            ? formData.next_node_ids.split(",")
+            : [],
           system_prompt: formData.system_prompt || "",
           llm_organization_name: formData.llm_organization_name || "",
           llm_model_name: formData.llm_model_name || "",
@@ -313,7 +299,7 @@ output_socket_list: formData.output_socket_list || [],
           const data = await response.json();
           console.log("Node created successfully:", data);
           const nodeInfo = data.node_information;
-          console.log("node info", nodeInfo)
+          console.log("node info", nodeInfo);
           setNodes((nds) => nds.concat(newNode));
           setNodeIdCounter((id) => id + 1);
           closeModal();
@@ -325,8 +311,6 @@ output_socket_list: formData.output_socket_list || [],
       }
     }
   };
-
-
 
   return (
     <div style={{ height: "100vh", width: "100%" }} className="h-screen">
