@@ -103,6 +103,8 @@ const WorkflowEditor = () => {
           ...(sourceNode.data.next_node_ids || []),
           targetNode.data.nodeID, // Use nodeId instead of nodeID for consistency
         ];
+
+        const uniqueNextNodeIds = Array.from(new Set(updatedNextNodeIds));
   
         if (sourceNode.type === "inputNode") {
           const handleIndex = parseInt(params.sourceHandle.split("-")[2], 10); 
@@ -114,7 +116,7 @@ const WorkflowEditor = () => {
           }
   
           // Only update target node if it's llmNode or ragNode
-          if (sourceNode === "inputNode" && (targetNode.type === "llmNode" || targetNode.type === "ragNode")) {
+          if (targetNode.type === "llmNode" || targetNode.type === "ragNode") {
             const updatedTargetNode = {
               ...targetNode,
               data: {
@@ -141,7 +143,7 @@ const WorkflowEditor = () => {
               data: {
                 ...sourceNode.data,
                 input_data: updatedInputData,
-                next_node_ids: updatedNextNodeIds,
+                next_node_ids: uniqueNextNodeIds,
               },
             };
   
@@ -160,7 +162,7 @@ const WorkflowEditor = () => {
             ...sourceNode,
             data: {
               ...sourceNode.data,
-              next_node_ids: updatedNextNodeIds,
+              next_node_ids: uniqueNextNodeIds,
             },
           };
   
