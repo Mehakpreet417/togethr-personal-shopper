@@ -44,8 +44,8 @@ const Home = () => {
       setSelectedWorkflowId(data.workflow_id.id);
       localStorage.setItem('selectedWorkflowId', data.workflow_id.id);
       
-      setIsModalOpen(false); // Close the modal after creation
-      navigate(`/${data.workflow_id.id}`); // Navigate to the new workflow's route
+      setIsModalOpen(false); 
+      navigate(`/${data.workflow_id.id}`);
 
     } catch (error) {
       console.error("Error creating workflow:", error);

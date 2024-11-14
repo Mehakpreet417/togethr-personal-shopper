@@ -19,8 +19,78 @@ const WorkflowEditor = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedNodeType, setSelectedNodeType] = useState("");
   const [inputType, setInputType] = useState("string");
-  const [sasUrl, setSasUrl] = useState(""); // State to store SAS URL
+  const [sasUrl, setSasUrl] = useState(""); 
   const [blobName, setBlobName] = useState("");
+
+  // const onConnect = useCallback(
+  //   (params) => {
+  //     const sourceNode = nodes.find((node) => node.id === params.source);
+  //     const targetNode = nodes.find((node) => node.id === params.target);
+  
+  //     if (sourceNode && targetNode && sourceNode === "inputNode") {
+  //       const handleIndex = parseInt(params.sourceHandle.split("-")[2], 10); 
+  //       const input_data = sourceNode.data.input_data[handleIndex]; // Get the specific input data
+  //       if (!input_data) {
+  //         console.error("No input data found for the connected handle.");
+  //         return;
+  //       }
+  
+  //       // Assuming the target node has a specific input socket ID format
+  //       const targetSocketId = `${targetNode.id}-input-${targetNode.data.input_socket_list.length}`; // Generate socket ID
+  
+  //       if (targetNode.type === "llmNode" || targetNode.type === "ragNode") {
+  //         const updatedTargetNode = {
+  //           ...targetNode,
+  //           data: {
+  //             ...targetNode.data,
+  //             input_socket_list: [
+  //               ...(targetNode.data.input_socket_list || []),
+  //               { input_value: input_data },
+  //             ],
+  //           },
+  //         };
+  
+  //         // Update the inputData of the source node to include the new socket ID in the next_node_socket_ids array
+  //         const updatedInputData = [...sourceNode.data.input_data];
+  //         updatedInputData[handleIndex] = {
+  //           ...input_data,
+  //           next_node_socket_ids: [
+  //             ...(input_data.next_node_socket_ids || []), 
+  //             targetSocketId, 
+  //           ],
+  //         };
+
+  //         const updatedNextNodeIds = [
+  //           ...(sourceNode.data.next_node_ids || []),
+  //           targetNode.data.nodeID,
+  //         ];
+  
+  //         const updatedSourceNode = {
+  //           ...sourceNode,
+  //           data: {
+  //             ...sourceNode.data,
+  //             input_data: updatedInputData,
+  //             next_node_ids: updatedNextNodeIds,
+  //           },
+  //         };
+  
+  //         // Update both the source and target nodes in the state
+  //         setNodes((nds) =>
+  //           nds.map((node) =>
+  //             node.id === targetNode.id ? updatedTargetNode : node.id === sourceNode.id ? updatedSourceNode : node
+  //           )
+  //         );
+  //         console.log("Updated target node:", updatedTargetNode);
+  //         console.log("updated source node", updatedSourceNode);
+  //       }
+  //     }
+  //     else{
+
+  //     }
+  //     setEdges((eds) => addEdge({ ...params, arrowHeadType: "arrow" }, eds));
+  //   },
+  //   [nodes, setEdges]
+  // );
 
   const onConnect = useCallback(
     (params) => {
@@ -28,47 +98,87 @@ const WorkflowEditor = () => {
       const targetNode = nodes.find((node) => node.id === params.target);
   
       if (sourceNode && targetNode) {
-        // Get the index of the connected handle to determine which input data to send
-        const handleIndex = parseInt(params.sourceHandle.split("-")[2], 10); // Extract index from handle ID
-        
-        // Ensure inputData exists
-        const inputData = sourceNode.data.inputData[handleIndex]; // Get the specific input data
-        if (!inputData) {
-          console.error("No input data found for the connected handle.");
-          return;
-        }
+        const targetSocketId = `${targetNode.id}-input-${targetNode.data.input_socket_list.length}`; // Generate socket ID
+        const updatedNextNodeIds = [
+          ...(sourceNode.data.next_node_ids || []),
+          targetNode.data.nodeID, // Use nodeId instead of nodeID for consistency
+        ];
   
-        // Check if the target node is an LLMNode or RAGNode
-        if (targetNode.type === "llmNode" || targetNode.type === "ragNode") {
-          // Update the target node's input_socket_list with the input data from the InputNode
-          const updatedTargetNode = {
-            ...targetNode,
-            data: {
-              ...targetNode.data,
-              input_socket_list: [
-                ...(targetNode.data.input_socket_list || []), // Ensure existing data is preserved
-                { input_value: inputData }, // Format input data as needed
+        if (sourceNode.type === "inputNode") {
+          const handleIndex = parseInt(params.sourceHandle.split("-")[2], 10); 
+          const input_data = sourceNode.data.input_data[handleIndex]; // Get the specific input data
+  
+          if (!input_data) {
+            console.error("No input data found for the connected handle.");
+            return;
+          }
+  
+          // Only update target node if it's llmNode or ragNode
+          if (sourceNode === "inputNode" && (targetNode.type === "llmNode" || targetNode.type === "ragNode")) {
+            const updatedTargetNode = {
+              ...targetNode,
+              data: {
+                ...targetNode.data,
+                input_socket_list: [
+                  ...(targetNode.data.input_socket_list || []),
+                  { input_value: input_data },
+                ],
+              },
+            };
+  
+            // Update the inputData of the source node to include the new socket ID in the next_node_socket_ids array
+            const updatedInputData = [...sourceNode.data.input_data];
+            updatedInputData[handleIndex] = {
+              ...input_data,
+              next_node_socket_ids: [
+                ...(input_data.next_node_socket_ids || []), 
+                targetSocketId, 
               ],
+            };
+  
+            const updatedSourceNode = {
+              ...sourceNode,
+              data: {
+                ...sourceNode.data,
+                input_data: updatedInputData,
+                next_node_ids: updatedNextNodeIds,
+              },
+            };
+  
+            // Update both the source and target nodes in the state
+            setNodes((nds) =>
+              nds.map((node) =>
+                node.id === targetNode.id ? updatedTargetNode : node.id === sourceNode.id ? updatedSourceNode : node
+              )
+            );
+            console.log("Updated target node:", updatedTargetNode);
+            console.log("Updated source node:", updatedSourceNode);
+          }
+        } else if (sourceNode.type === "llmNode" || sourceNode.type === "ragNode") {
+          // If the source node is llmNode or ragNode, just update next_node_ids
+          const updatedSourceNode = {
+            ...sourceNode,
+            data: {
+              ...sourceNode.data,
+              next_node_ids: updatedNextNodeIds,
             },
           };
   
-          // Update the nodes state with the modified target node
+          // Update the source node in the state
           setNodes((nds) =>
             nds.map((node) =>
-              node.id === targetNode.id ? updatedTargetNode : node
+              node.id === sourceNode.id ? updatedSourceNode : node
             )
           );
-  
-          // Log the updated target node to confirm the data has been passed
-          console.log("Updated target node:", updatedTargetNode);
+          console.log("Updated source node (llmNode/ragNode):", updatedSourceNode);
         }
       }
   
-      // Add the edge to the state
       setEdges((eds) => addEdge({ ...params, arrowHeadType: "arrow" }, eds));
     },
     [nodes, setEdges]
   );
+
 
   const onNodeClick = (event, node) => {
     console.log("Node clicked:", node);
@@ -232,26 +342,18 @@ const WorkflowEditor = () => {
       typesOfNode = "ragNode";
     } else {
       alert("Please select correct node type.");
+      return;
     }
 
     if (inputType === "file" && formData.file) {
-      // Call createInputNode if input type is file
       await createInputNode(formData.file);
     } else {
-      const workflowid = localStorage.getItem("selectedWorkflowId"); // Replace with the actual workflow ID
+      const workflowid = localStorage.getItem("selectedWorkflowId"); 
       const newNode = {
         id: `${nodeIdCounter}`,
         type: typesOfNode,
         isConnectable: true,
-        data: {
-          label: formData.node_name || selectedNodeType,
-          inputData: formData.input_data || [], 
-          system_prompt: formData.system_prompt || "", // For LLM and RAG
-          llm_organization_name: formData.llm_organization_name || "", // For LLM and RAG
-          llm_model_name: formData.llm_model_name || "", // For LLM and RAG
-          input_socket_list: formData.input_socket_list || [],
-          output_socket_list: formData.output_socket_list || [],
-        },
+        data: {},
         position: { x: Math.random() * 400, y: Math.random() * 400 },
       };
 
@@ -275,8 +377,8 @@ const WorkflowEditor = () => {
           llm_model_name: formData.llm_model_name || "",
           formatting_llm_organization: null,
           formatting_llm_model: null,
-          input_socket_list: [],
-          output_socket_list: [],
+          input_socket_list: formData.input_socket_list || [],
+          output_socket_list: formData.output_socket_list || [],
         },
         LLM: {
           node_name: formData.node_name || "",
@@ -307,9 +409,22 @@ const WorkflowEditor = () => {
         if (response.ok) {
           const data = await response.json();
           console.log("Node created successfully:", data);
-          const nodeInfo = data.node_information;
-          console.log("node info", nodeInfo);
-          setNodes((nds) => nds.concat(newNode));
+          const nodeInfo = JSON.parse(data.node_information); 
+          console.log(`node info of ${nodeInfo.node_type}`, nodeInfo);
+          const nodeID = data.id;
+          console.log("node id ", nodeID)
+
+          const updatedNewNode = {
+            ...newNode,
+            data:{
+              ...newNode.data,
+              ...nodeInfo,
+              nodeID: nodeID,
+            }
+          }
+
+
+          setNodes((nds) => nds.concat(updatedNewNode));
           setNodeIdCounter((id) => id + 1);
           closeModal();
         } else {
